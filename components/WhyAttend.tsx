@@ -10,7 +10,7 @@ const REASONS: Reason[] = [
     body: "Know exactly what to do in Year 1, and what to do in Year 2.",
     from: "#f6e7e8",
     to: "#fcfbfb",
-    tilt: -3,
+    tilt: -4,
   },
   {
     n: "02",
@@ -18,7 +18,7 @@ const REASONS: Reason[] = [
     body: "No more random tutorials. Focus only on what companies test.",
     from: "#e6f2ed",
     to: "#f6fbf8",
-    tilt: 7,
+    tilt: 3,
   },
   {
     n: "03",
@@ -26,24 +26,21 @@ const REASONS: Reason[] = [
     body: "From someone who has cracked top tech companies himself.",
     from: "#cad9f7",
     to: "#f0f7fe",
-    tilt: -8,
+    tilt: -5,
   },
 ];
 
 export default function WhyAttend() {
   return (
-    <section id="why" className="scroll-mt-24 bg-[#f3f4f6]">
-      <div className="mx-auto max-w-[1152px] px-6 pt-20 text-center">
-        <Reveal from="top">
-          <span className="inline-flex h-[38px] items-center rounded-full border border-brand/25 bg-brand/8 px-4 text-sm text-ink/75">
-            Why attend
-          </span>
-        </Reveal>
-      </div>
-
+    <section id="why" className="scroll-mt-24 bg-[#f3f4f6] pt-10">
       <WhyAttendStack
         marquee="STOP GUESSING. START WITH A PLAN."
         reasons={REASONS}
+        badge={
+          <span className="inline-flex h-[38px] items-center rounded-full border border-brand/25 bg-brand/8 px-4 text-sm text-ink/75">
+            Why attend
+          </span>
+        }
       />
 
       <div className="mx-auto -mt-[14vh] max-w-[1152px] px-6 pb-20">

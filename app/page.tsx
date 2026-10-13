@@ -2,6 +2,8 @@ import Agenda from "@/components/Agenda";
 import CostOfWaiting from "@/components/CostOfWaiting";
 import DreamBig from "@/components/DreamBig";
 import Electricity from "@/components/Electricity";
+import Faq from "@/components/Faq";
+import FinalCta from "@/components/FinalCta";
 import Gap from "@/components/Gap";
 import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
@@ -25,6 +27,8 @@ export default function Home() {
         <WhyAttend />
         <Mentor />
         <Agenda />
+        <FinalCta />
+        <Faq />
       </main>
     </>
   );

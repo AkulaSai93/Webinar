@@ -39,7 +39,7 @@ export default function Gap() {
       className="relative z-20 -mt-[38vh] scroll-mt-24 bg-transparent"
     >
       <RiseIn distance={320}>
-        <div className="w-full rounded-t-[64px] bg-[#1b1b1f] sm:rounded-t-[88px] px-6 py-16 shadow-[0_-30px_80px_-50px_rgba(10,7,8,0.55)] sm:px-10 sm:py-20">
+        <div className="w-full rounded-[32px] bg-[#1b1b1f] px-6 py-16 shadow-[0_-30px_80px_-50px_rgba(10,7,8,0.55)] sm:rounded-[40px] sm:px-10 sm:py-20">
           <div className="mx-auto max-w-[1072px]">
             {/* heading + supporting copy */}
             <Reveal from="top">

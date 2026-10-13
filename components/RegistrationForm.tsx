@@ -6,8 +6,8 @@ import { useState } from "react";
 
 type Errors = { fullName?: string; phone?: string; email?: string };
 
-const inputClass =
-  "h-[50px] w-full rounded-xl border border-ink/12 bg-[#fafafa] px-4 text-sm text-ink placeholder:text-ink/30 outline-none transition focus:border-brand focus:bg-white focus:ring-2 focus:ring-brand/15";
+const inputBase =
+  "w-full rounded-xl border border-ink/12 bg-[#fafafa] px-4 text-sm text-ink placeholder:text-ink/30 outline-none transition focus:border-brand focus:bg-white focus:ring-2 focus:ring-brand/15";
 
 const labelClass =
   "mb-2 block text-xs font-bold leading-4 tracking-[0.96px] text-ink/70";
@@ -21,7 +21,17 @@ function ArrowUpRight() {
   );
 }
 
-export default function RegistrationForm() {
+export default function RegistrationForm({
+  cta = "Reserve my free seat",
+  /** the hero card carries the session details; the closing card does not */
+  meta = true,
+  /** a tighter card, for sections that need less height */
+  compact = false,
+}: {
+  cta?: string;
+  meta?: boolean;
+  compact?: boolean;
+} = {}) {
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -68,24 +78,33 @@ export default function RegistrationForm() {
     );
   }
 
+  const inputClass = `${inputBase} ${compact ? "h-11" : "h-[50px]"}`;
+  const fieldGap = compact ? "pt-4" : "pt-5";
+
   return (
-    <div className="rounded-2xl border border-ink/10 bg-white p-8">
-      <h2 className="text-2xl font-bold leading-8 tracking-[-0.6px] text-ink">
+    <div
+      className={`rounded-2xl border border-ink/10 bg-white ${
+        compact ? "p-6" : "p-8"
+      }`}
+    >
+      <h2 className={`font-bold tracking-[-0.6px] text-ink ${compact ? "text-xl leading-7" : "text-2xl leading-8"}`}>
         Save your seat
       </h2>
       <p className="mt-1 text-sm leading-5 text-ink/50">
         Join link &amp; reminders come on WhatsApp and email.
       </p>
 
-      <div className="mt-5 flex flex-wrap items-center gap-4 border-y border-ink/8 py-3 text-xs font-semibold leading-4 tracking-[0.3px] text-ink/70">
-        <span>17 OCT</span>
-        <span className="size-1 rounded-full bg-brand" />
-        <span>4:00 PM IST</span>
-        <span className="size-1 rounded-full bg-brand" />
-        <span>ONLINE · ZOOM</span>
-      </div>
+      {meta && (
+        <div className="mt-5 flex flex-wrap items-center gap-4 border-y border-ink/8 py-3 text-xs font-semibold leading-4 tracking-[0.3px] text-ink/70">
+          <span>17 OCT</span>
+          <span className="size-1 rounded-full bg-brand" />
+          <span>4:00 PM IST</span>
+          <span className="size-1 rounded-full bg-brand" />
+          <span>ONLINE · ZOOM</span>
+        </div>
+      )}
 
-      <form onSubmit={handleSubmit} noValidate className="mt-6">
+      <form onSubmit={handleSubmit} noValidate className={compact ? "mt-5" : "mt-6"}>
         <div>
           <label htmlFor="fullName" className={labelClass}>
             FULL NAME
@@ -109,12 +128,12 @@ export default function RegistrationForm() {
           )}
         </div>
 
-        <div className="pt-5">
+        <div className={fieldGap}>
           <label htmlFor="phone" className={labelClass}>
             WHATSAPP NUMBER
           </label>
           <div className="flex gap-2">
-            <span className="inline-flex h-[50px] shrink-0 items-center rounded-xl border border-ink/12 bg-[#f2f2f2] px-3.5 text-sm font-semibold text-ink/70">
+            <span className={`inline-flex shrink-0 items-center rounded-xl border border-ink/12 bg-[#f2f2f2] px-3.5 text-sm font-semibold text-ink/70 ${compact ? "h-11" : "h-[50px]"}`}>
               +91
             </span>
             <input
@@ -139,9 +158,9 @@ export default function RegistrationForm() {
           )}
         </div>
 
-        <div className="pt-5">
+        <div className={fieldGap}>
           <label htmlFor="email" className={labelClass}>
-            EMAIL
+            Email
           </label>
           <input
             id="email"
@@ -165,17 +184,19 @@ export default function RegistrationForm() {
         <button
           type="submit"
           disabled={submitting}
-          className="group mt-5 flex w-full items-center justify-center gap-3 rounded-xl bg-ink px-6 py-4 text-sm font-semibold leading-5 text-white transition hover:bg-brand focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
+          className={`group flex w-full items-center justify-center gap-3 rounded-xl bg-ink px-6 ${compact ? "mt-5 py-3.5" : "mt-5 py-4"} text-sm font-semibold leading-5 text-white transition hover:bg-brand focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60`}
         >
-          {submitting ? "Reserving your seat…" : "Reserve my free seat"}
+          {submitting ? "Reserving your seat…" : cta}
           <span className="flex size-6 items-center justify-center rounded-full bg-white text-ink transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
             <ArrowUpRight />
           </span>
         </button>
 
-        <p className="mt-5 text-center text-xs leading-4 text-ink/40">
-          100% free · Limited seats · No spam
-        </p>
+        {meta && (
+          <p className="mt-5 text-center text-xs leading-4 text-ink/40">
+            100% free · Limited seats · No spam
+          </p>
+        )}
       </form>
     </div>
   );
