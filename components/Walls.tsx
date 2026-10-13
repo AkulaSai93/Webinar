@@ -1,3 +1,4 @@
+import { BRICK_ART } from "./BrickArt";
 import WallStack, { Shard } from "./WallStack";
 
 /* Figma: Webinar 28:10237 */
@@ -57,8 +58,6 @@ const WALLS = [
     Icon: MentorIcon,
     tint: "#dfeafd",
     chip: "#cfdefa",
-    /** the noise filling the rest of that course of brick */
-    noise: ["“ask a senior?”", "LinkedIn cold DMs"],
   },
   {
     n: "02",
@@ -67,7 +66,6 @@ const WALLS = [
     Icon: MapIcon,
     tint: "#fdf2df",
     chip: "#f6e2bb",
-    noise: ["23 open tabs", "“start after exams”"],
   },
   {
     n: "03",
@@ -76,7 +74,6 @@ const WALLS = [
     Icon: LayersIcon,
     tint: "#eaf4ec",
     chip: "#d3e8d8",
-    noise: ["“learn 7 languages”", "saved, never watched"],
   },
   {
     n: "04",
@@ -85,17 +82,15 @@ const WALLS = [
     Icon: DoubtIcon,
     tint: "#fdeded",
     chip: "#f7d2d2",
-    noise: ["“maybe next year”", "everyone's ahead"],
   },
 ];
 
-/** A blank brick in the wall — carries the background noise. */
-function Brick({ label }: { label: string }) {
+/** A blank brick in the wall — carries a small coding sketch. */
+function Brick({ art }: { art: number }) {
+  const Art = BRICK_ART[art % BRICK_ART.length];
   return (
     <div className="flex h-full items-center justify-center rounded-xl border border-ink/8 bg-ink/[0.035] px-4">
-      <span className="truncate text-center text-[13px] text-ink/25">
-        {label}
-      </span>
+      <Art className="h-[72%] w-auto max-w-full opacity-90" />
     </div>
   );
 }
@@ -140,7 +135,7 @@ export default function Walls() {
           </div>
         }
       >
-        {WALLS.map(({ n, title, body, Icon, tint, chip, noise }, row) => (
+        {WALLS.map(({ n, title, body, Icon, tint, chip }, row) => (
           <div
             key={n}
             className={`grid gap-3 ${
@@ -150,7 +145,7 @@ export default function Walls() {
             }`}
           >
             <Shard seed={row * 3 + 1} className="hidden h-[89px] sm:block">
-              <Brick label={noise[0]} />
+              <Brick art={row * 2} />
             </Shard>
 
             <Shard seed={row * 3 + 2}>
@@ -184,7 +179,7 @@ export default function Walls() {
             </Shard>
 
             <Shard seed={row * 3 + 3} className="hidden h-[89px] sm:block">
-              <Brick label={noise[1]} />
+              <Brick art={row * 2 + 1} />
             </Shard>
           </div>
         ))}
