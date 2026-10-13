@@ -2,11 +2,12 @@
 
 @theme {
   --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-bricolage), var(--font-jakarta), ui-sans-serif, sans-serif;
 
   /* uGSOT Catalyst palette — light surface */
   --color-ink: #0a0708;
-  --color-brand: #e6161f;
-  --color-brand-dark: #c01119;
+  --color-brand: #e7000b;
+  --color-brand-dark: #c20009;
 }
 
 html {
@@ -32,6 +33,160 @@ html {
 
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee {
+    animation: none;
+  }
+}
+
+/* --- divergence chart --------------------------------------------------- */
+
+.chart-line {
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+}
+
+.chart-in .chart-line {
+  animation: draw-line 1700ms cubic-bezier(0.33, 1, 0.68, 1) forwards;
+}
+
+.chart-in .chart-line-late {
+  animation-delay: 300ms;
+}
+
+@keyframes draw-line {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* a short highlight that keeps travelling along the lead curve */
+.chart-spark {
+  stroke-dasharray: 26 1400;
+  stroke-dashoffset: 1400;
+  opacity: 0;
+}
+
+.chart-in .chart-spark {
+  animation: spark-run 3.6s linear 2s infinite;
+}
+
+@keyframes spark-run {
+  0% {
+    stroke-dashoffset: 1400;
+    opacity: 0;
+  }
+  8%,
+  75% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+/* the area under the lead curve wipes up into place */
+.chart-area {
+  opacity: 0;
+  transform: scaleY(0.6);
+  transform-origin: bottom;
+}
+
+.chart-in .chart-area {
+  animation: area-rise 900ms cubic-bezier(0.33, 1, 0.68, 1) 900ms forwards;
+}
+
+@keyframes area-rise {
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+.chart-fade {
+  opacity: 0;
+}
+
+.chart-in .chart-fade {
+  animation: chart-fade-in 600ms ease-out forwards;
+  animation-delay: 1400ms;
+}
+
+.chart-in .chart-fade-2 {
+  animation-delay: 1600ms;
+}
+
+.chart-in .chart-fade-3 {
+  animation-delay: 1800ms;
+}
+
+@keyframes chart-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* endpoint haloes keep breathing */
+.chart-in .chart-pulse {
+  animation:
+    chart-fade-in 600ms ease-out 1400ms forwards,
+    halo 2.6s ease-in-out 2s infinite;
+}
+
+@keyframes halo {
+  0%,
+  100% {
+    opacity: 0.25;
+    r: 12;
+  }
+  50% {
+    opacity: 0.08;
+    r: 18;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chart-line,
+  .chart-in .chart-line,
+  .chart-area,
+  .chart-in .chart-area,
+  .chart-fade,
+  .chart-in .chart-fade,
+  .chart-in .chart-pulse {
+    animation: none;
+    stroke-dashoffset: 0;
+    opacity: 1;
+    transform: none;
+  }
+
+  .chart-spark,
+  .chart-in .chart-spark {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+/* --- "why attend" marquee ---------------------------------------------- */
+
+@keyframes marquee-headline {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-headline {
+  animation: marquee-headline 22s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-headline {
     animation: none;
   }
 }
