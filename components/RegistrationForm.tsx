@@ -2,14 +2,29 @@
 
 import { useState } from "react";
 
-type Errors = { fullName?: string; phone?: string };
+/* Figma: Webinar 28:10548 */
+
+type Errors = { fullName?: string; phone?: string; email?: string };
 
 const inputClass =
-  "w-full rounded-xl border border-ink/12 bg-[#FAFAFA] px-4 py-3.5 text-sm text-ink placeholder:text-ink/30 outline-none transition focus:border-brand focus:bg-white focus:ring-2 focus:ring-brand/15";
+  "h-[50px] w-full rounded-xl border border-ink/12 bg-[#fafafa] px-4 text-sm text-ink placeholder:text-ink/30 outline-none transition focus:border-brand focus:bg-white focus:ring-2 focus:ring-brand/15";
+
+const labelClass =
+  "mb-2 block text-xs font-bold leading-4 tracking-[0.96px] text-ink/70";
+
+function ArrowUpRight() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="size-3" aria-hidden>
+      <path d="M7 7h10v10" />
+      <path d="M7 17 17 7" />
+    </svg>
+  );
+}
 
 export default function RegistrationForm() {
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [errors, setErrors] = useState<Errors>({});
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
@@ -18,6 +33,8 @@ export default function RegistrationForm() {
     const next: Errors = {};
     if (fullName.trim().length < 3) next.fullName = "Please enter your full name.";
     if (phone.length !== 10) next.phone = "Enter a valid 10-digit number.";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim()))
+      next.email = "Enter a valid email address.";
     return next;
   }
 
@@ -28,7 +45,7 @@ export default function RegistrationForm() {
     if (Object.keys(next).length > 0) return;
 
     setSubmitting(true);
-    // TODO: POST { fullName, phone } to your registration endpoint / CRM.
+    // TODO: POST { fullName, phone, email } to your registration endpoint / CRM.
     await new Promise((r) => setTimeout(r, 700));
     setSubmitting(false);
     setDone(true);
@@ -36,39 +53,41 @@ export default function RegistrationForm() {
 
   if (done) {
     return (
-      <div className="rounded-2xl border border-ink/10 bg-white p-8 text-center shadow-[0_18px_50px_-18px_rgba(10,7,8,0.25)]">
-        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-brand/10 text-xl text-brand">
+      <div className="rounded-2xl border border-ink/10 bg-white p-8 text-center">
+        <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-brand/10 text-xl text-brand">
           ✓
         </div>
-        <h3 className="mt-4 text-xl font-bold text-ink">Your seat is saved</h3>
-        <p className="mt-2 text-sm text-ink/55">
+        <h2 className="mt-4 text-2xl font-bold tracking-[-0.6px] text-ink">
+          Your seat is saved
+        </h2>
+        <p className="mt-2 text-sm text-ink/50">
           See you on 17 Oct at 4:00 PM IST, {fullName.split(" ")[0]}. The join
-          link and reminders are on their way to your WhatsApp.
+          link and reminders are on their way to your WhatsApp and email.
         </p>
       </div>
     );
   }
 
   return (
-    <div className="rounded-2xl border border-ink/10 bg-white p-6 shadow-[0_18px_50px_-18px_rgba(10,7,8,0.25)] sm:p-8">
-      <h2 className="text-2xl font-bold tracking-tight text-ink">
+    <div className="rounded-2xl border border-ink/10 bg-white p-8">
+      <h2 className="text-2xl font-bold leading-8 tracking-[-0.6px] text-ink">
         Save your seat
       </h2>
-      <p className="mt-1 text-sm text-ink/50">
-        Join link &amp; reminders come on WhatsApp.
+      <p className="mt-1 text-sm leading-5 text-ink/50">
+        Join link &amp; reminders come on WhatsApp and email.
       </p>
 
-      <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 border-y border-ink/8 py-3 text-xs font-semibold tracking-wide text-ink/70">
+      <div className="mt-5 flex flex-wrap items-center gap-4 border-y border-ink/8 py-3 text-xs font-semibold leading-4 tracking-[0.3px] text-ink/70">
         <span>17 OCT</span>
-        <span className="h-1 w-1 rounded-full bg-brand" />
+        <span className="size-1 rounded-full bg-brand" />
         <span>4:00 PM IST</span>
-        <span className="h-1 w-1 rounded-full bg-brand" />
+        <span className="size-1 rounded-full bg-brand" />
         <span>ONLINE · ZOOM</span>
       </div>
 
-      <form onSubmit={handleSubmit} noValidate className="mt-6 space-y-5">
+      <form onSubmit={handleSubmit} noValidate className="mt-6">
         <div>
-          <label htmlFor="fullName" className="mb-2 block text-xs font-bold tracking-[0.08em] text-ink/70">
+          <label htmlFor="fullName" className={labelClass}>
             FULL NAME
           </label>
           <input
@@ -90,12 +109,12 @@ export default function RegistrationForm() {
           )}
         </div>
 
-        <div>
-          <label htmlFor="phone" className="mb-2 block text-xs font-bold tracking-[0.08em] text-ink/70">
+        <div className="pt-5">
+          <label htmlFor="phone" className={labelClass}>
             WHATSAPP NUMBER
           </label>
           <div className="flex gap-2">
-            <span className="inline-flex shrink-0 items-center rounded-xl border border-ink/12 bg-[#F2F2F2] px-3.5 text-sm font-semibold text-ink/70">
+            <span className="inline-flex h-[50px] shrink-0 items-center rounded-xl border border-ink/12 bg-[#f2f2f2] px-3.5 text-sm font-semibold text-ink/70">
               +91
             </span>
             <input
@@ -120,18 +139,41 @@ export default function RegistrationForm() {
           )}
         </div>
 
+        <div className="pt-5">
+          <label htmlFor="email" className={labelClass}>
+            EMAIL
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autoComplete="email"
+            placeholder="you@email.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            aria-invalid={Boolean(errors.email)}
+            aria-describedby={errors.email ? "email-error" : undefined}
+            className={inputClass}
+          />
+          {errors.email && (
+            <p id="email-error" className="mt-1.5 text-xs font-medium text-brand">
+              {errors.email}
+            </p>
+          )}
+        </div>
+
         <button
           type="submit"
           disabled={submitting}
-          className="group flex w-full items-center justify-center gap-3 rounded-xl bg-ink px-6 py-4 text-sm font-semibold text-white transition hover:bg-brand focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
+          className="group mt-5 flex w-full items-center justify-center gap-3 rounded-xl bg-ink px-6 py-4 text-sm font-semibold leading-5 text-white transition hover:bg-brand focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {submitting ? "Reserving your seat…" : "Reserve my free seat"}
-          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white text-xs text-ink transition group-hover:translate-x-0.5">
-            ↗
+          <span className="flex size-6 items-center justify-center rounded-full bg-white text-ink transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+            <ArrowUpRight />
           </span>
         </button>
 
-        <p className="text-center text-xs text-ink/40">
+        <p className="mt-5 text-center text-xs leading-4 text-ink/40">
           100% free · Limited seats · No spam
         </p>
       </form>

@@ -3,6 +3,7 @@
 @theme {
   --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-bricolage), var(--font-jakarta), ui-sans-serif, sans-serif;
+  --font-geist: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
 
   /* uGSOT Catalyst palette — light surface */
   --color-ink: #0a0708;
@@ -189,4 +190,40 @@ html {
   .marquee-headline {
     animation: none;
   }
+}
+
+/* --- concave corners where the agenda tray meets the strip -------------- */
+
+.concave-tr,
+.concave-br {
+  position: absolute;
+  right: 0;
+  width: 28px;
+  height: 28px;
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .concave-tr,
+  .concave-br {
+    display: block;
+  }
+}
+
+.concave-tr {
+  top: -28px;
+  background: radial-gradient(
+    circle at 0 0,
+    transparent 0 28px,
+    rgba(231, 0, 11, 0.06) 28px
+  );
+}
+
+.concave-br {
+  bottom: -28px;
+  background: radial-gradient(
+    circle at 0 100%,
+    transparent 0 28px,
+    rgba(231, 0, 11, 0.06) 28px
+  );
 }

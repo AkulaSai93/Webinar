@@ -75,10 +75,10 @@ export default function Mentor() {
           <div className="relative">
             <div className="overflow-hidden rounded-[28px] shadow-[0_40px_90px_-45px_rgba(10,7,8,0.7)]">
               <Image
-                src="/mentor.webp"
+                src="/mentor.png"
                 alt="Vishwa Mohan, Founder and CEO of upGrad School of Technology"
-                width={803}
-                height={803}
+                width={1250}
+                height={1250}
                 priority={false}
                 className="aspect-[4/5] w-full object-cover object-top"
               />

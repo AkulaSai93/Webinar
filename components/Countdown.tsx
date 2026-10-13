@@ -29,23 +29,31 @@ export default function Countdown({ target }: { target: string }) {
     return () => clearInterval(id);
   }, [targetMs]);
 
+  const live = Boolean(time && targetMs - Date.now() > 0);
+
   return (
-    <div className="flex items-center gap-2">
-      {UNITS.map(({ key, label }, i) => (
-        <div key={key} className="flex items-center gap-2">
-          <div className="text-center">
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-ink text-lg font-bold tabular-nums text-white sm:h-13 sm:w-13">
-              {time ? String(time[key]).padStart(2, "0") : "--"}
+    <div>
+      <p className="mb-3 text-[11px] font-bold tracking-[1.98px] text-white/55">
+        {live ? "FIRST SESSION STARTS IN" : "THE SESSION IS LIVE"}
+      </p>
+
+      <div className="flex items-center gap-2.5">
+        {UNITS.map(({ key, label }, i) => (
+          <div key={key} className="flex items-center gap-2.5">
+            <div className="text-center">
+              <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-white/15 bg-white/10 text-xl font-bold tabular-nums text-white backdrop-blur-sm">
+                {time ? String(time[key]).padStart(2, "0") : "--"}
+              </div>
+              <p className="mt-1.5 text-[10px] font-semibold tracking-[0.15em] text-white/45">
+                {label}
+              </p>
             </div>
-            <p className="mt-1.5 text-[10px] font-semibold tracking-[0.18em] text-ink/40">
-              {label}
-            </p>
+            {i < UNITS.length - 1 && (
+              <span className="-mt-5 text-lg font-light text-white/25">:</span>
+            )}
           </div>
-          {i < UNITS.length - 1 && (
-            <span className="-mt-5 text-lg font-light text-ink/20">:</span>
-          )}
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
