@@ -1,5 +1,6 @@
 import InView from "./InView";
 import Reveal from "./Reveal";
+import { ArrowRight } from "./icons";
 
 const POINTS = [
   { lead: "Most students waste Year 1 and 2", rest: "thinking there's plenty of time." },
@@ -19,128 +20,160 @@ function Cross() {
   );
 }
 
-const X = { y1: 70, y2: 230, y3: 390, y4: 540 };
+/* the plot runs x 56 → 584, baseline at y 296, in a 640 × 360 frame */
+const YEAR_AT = [56, 232, 408, 584];
+const YEAR_PCT = ["8.75%", "36.25%", "63.75%", "91.25%"];
+const GRID_Y = [110, 170, 230];
 
-/* the two trajectories, drawn across the same plot */
-const LEAD = "M70,272 C150,258 200,190 260,150 C340,98 450,74 540,64";
-const LATE = "M70,278 C180,276 300,272 390,262 C450,254 500,238 540,222";
+/** the early starter: slow start, then compounding */
+const LEAD =
+  "M56,288 C130,284 168,246 212,206 C268,156 318,118 392,100 C470,82 520,78 584,74";
+/** the one who waits: flat for years, then a late climb */
+const LATE =
+  "M56,292 C180,291 280,286 368,278 C440,270 520,256 584,240";
+
+/** milestones along the lead curve */
+const BEATS = [
+  { x: 232, y: 196 },
+  { x: 408, y: 96 },
+];
 
 function Chart() {
   return (
-    <svg
-      viewBox="0 0 720 330"
-      className="h-auto w-full overflow-visible"
-      role="img"
-      aria-label="Skills and opportunities over four years: the student who starts in Year 1 pulls far ahead of the one who waits until Year 3."
-    >
-      <defs>
-        <linearGradient id="leadArea" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#e7000b" stopOpacity="0.28" />
-          <stop offset="100%" stopColor="#e7000b" stopOpacity="0" />
-        </linearGradient>
-        <linearGradient id="gapFill" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="#e7000b" stopOpacity="0.04" />
-          <stop offset="100%" stopColor="#e7000b" stopOpacity="0.3" />
-        </linearGradient>
-        <filter id="lineGlow" x="-15%" y="-40%" width="130%" height="180%">
-          <feGaussianBlur stdDeviation="3.5" result="b" />
-          <feMerge>
-            <feMergeNode in="b" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-      </defs>
+    <div>
+      {/* the labels are positioned against this box, so it wraps the plot only */}
+      <div className="relative">
+        <svg
+          viewBox="0 0 640 360"
+          className="h-auto w-full"
+          role="img"
+          aria-label="Skills and opportunities over four years: the student who starts in Year 1 compounds steadily, while the one who waits until Year 3 stays flat and never closes the gap."
+        >
+          <defs>
+            <linearGradient id="leadArea" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#e7000b" stopOpacity="0.35" />
+              <stop offset="100%" stopColor="#e7000b" stopOpacity="0" />
+            </linearGradient>
+            <linearGradient id="gapFill" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="#e7000b" stopOpacity="0.03" />
+              <stop offset="100%" stopColor="#e7000b" stopOpacity="0.22" />
+            </linearGradient>
+            <linearGradient id="leadStroke" x1="0" y1="1" x2="1" y2="0">
+              <stop offset="0%" stopColor="#c10007" />
+              <stop offset="100%" stopColor="#ff3b43" />
+            </linearGradient>
+            <filter id="lineGlow" x="-15%" y="-40%" width="130%" height="180%">
+              <feGaussianBlur stdDeviation="4" result="b" />
+              <feMerge>
+                <feMergeNode in="b" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
 
-      {/* baseline + year ticks */}
-      <line x1="70" y1="288" x2="560" y2="288" stroke="#fff" strokeOpacity="0.08" />
-      {Object.values(X).map((x) => (
-        <line key={x} x1={x} y1="56" x2={x} y2="288" stroke="#fff" strokeOpacity="0.05" />
-      ))}
+          {/* the measure behind it all */}
+          {GRID_Y.map((y) => (
+            <line key={y} x1="56" y1={y} x2="584" y2={y} stroke="#fff" strokeOpacity="0.045" />
+          ))}
+          {YEAR_AT.map((x) => (
+            <line key={x} x1={x} y1="70" x2={x} y2="296" stroke="#fff" strokeOpacity="0.05" />
+          ))}
+          <line x1="56" y1="296" x2="584" y2="296" stroke="#fff" strokeOpacity="0.14" />
 
-      {/* soft area under the lead curve */}
-      <path className="chart-area" d={`${LEAD} L540,288 L70,288 Z`} fill="url(#leadArea)" />
+          {/* everything the early starter banked */}
+          <path className="chart-area" d={`${LEAD} L584,296 L56,296 Z`} fill="url(#leadArea)" />
 
-      {/* the gap between the two paths, opening toward Year 4 */}
-      <g className="chart-fade">
-        <path
-          d="M390,86 C450,74 500,68 540,64 L540,222 C500,238 450,254 390,262 Z"
-          fill="url(#gapFill)"
-        />
-        <text
-          x="468"
-          y="168"
-          textAnchor="middle"
-          fill="#e7000b"
-          fontSize="11"
-          fontWeight="700"
-          letterSpacing="3"
-          fontFamily="ui-monospace, monospace"
+          {/* and the distance between them by Year 4 */}
+          <g className="chart-fade">
+            <path
+              d="M408,96 C470,84 525,78 584,74 L584,240 C520,256 440,270 408,272 Z"
+              fill="url(#gapFill)"
+            />
+            <line x1="584" y1="74" x2="584" y2="240" stroke="#e7000b" strokeOpacity="0.5" strokeDasharray="3 4" />
+          </g>
+
+          <path
+            className="chart-line chart-line-late"
+            d={LATE}
+            fill="none"
+            stroke="#fff"
+            strokeOpacity="0.32"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            pathLength={1400}
+          />
+
+          <path
+            className="chart-line"
+            d={LEAD}
+            fill="none"
+            stroke="url(#leadStroke)"
+            strokeWidth="4"
+            strokeLinecap="round"
+            filter="url(#lineGlow)"
+          />
+          <path className="chart-spark" d={LEAD} fill="none" stroke="#fff" strokeWidth="4" strokeLinecap="round" />
+
+          {/* beats along the way */}
+          {BEATS.map(({ x, y }) => (
+            <g key={x} className="chart-fade chart-fade-2">
+              <circle cx={x} cy={y} r="7" fill="#e7000b" fillOpacity="0.18" />
+              <circle cx={x} cy={y} r="3" fill="#ff3b43" />
+            </g>
+          ))}
+
+          {/* where each of them ends up */}
+          <circle className="chart-pulse" cx="584" cy="74" r="12" fill="#e7000b" opacity="0.25" />
+          <circle className="chart-fade" cx="584" cy="74" r="5.5" fill="#ff3b43" />
+          <circle className="chart-fade chart-fade-2" cx="584" cy="240" r="4.5" fill="#fff" fillOpacity="0.5" />
+        </svg>
+
+        {/* labels live in HTML, so they stay legible however the chart scales */}
+        <span
+          className="chart-fade chart-fade-2 pointer-events-none absolute whitespace-nowrap rounded-full border border-white/10 bg-white/[0.07] px-3 py-1.5 text-[11px] font-bold text-white backdrop-blur-sm sm:text-xs"
+          style={{ right: "4%", top: "6%" }}
+        >
+          Started in Year 1
+        </span>
+        <span
+          className="chart-fade chart-fade-3 pointer-events-none absolute whitespace-nowrap rounded-full border border-white/8 bg-white/[0.04] px-3 py-1.5 text-[11px] font-medium text-white/60 backdrop-blur-sm sm:text-xs"
+          style={{ right: "4%", top: "76%" }}
+        >
+          Waited till Year 3
+        </span>
+
+        <span
+          className="chart-fade pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap font-mono text-[9px] font-bold tracking-[0.22em] text-brand sm:text-[10px]"
+          style={{ left: "77%", top: "44%" }}
         >
           THE GAP
-        </text>
-      </g>
+        </span>
 
-      {/* waited till year 3 */}
-      <path
-        className="chart-line chart-line-late"
-        d={LATE}
-        fill="none"
-        stroke="#fff"
-        strokeOpacity="0.3"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        strokeDasharray="1 9"
-        pathLength={1400}
-      />
+        {YEAR_PCT.map((left, i) => (
+          <span
+            key={left}
+            className={`chart-fade pointer-events-none absolute -translate-x-1/2 text-[10px] text-white/35 sm:text-[11px] ${
+              i > 1 ? "chart-fade-2" : ""
+            }`}
+            style={{ left, top: "85%" }}
+          >
+            {YEARS[i]}
+          </span>
+        ))}
+      </div>
 
-      {/* started in year 1 */}
-      <path
-        className="chart-line"
-        d={LEAD}
-        fill="none"
-        stroke="#e7000b"
-        strokeWidth="3.5"
-        strokeLinecap="round"
-        filter="url(#lineGlow)"
-      />
-      {/* travelling highlight */}
-      <path
-        className="chart-spark"
-        d={LEAD}
-        fill="none"
-        stroke="#fff"
-        strokeWidth="3.5"
-        strokeLinecap="round"
-      />
-
-      {/* endpoints */}
-      <circle className="chart-pulse" cx="540" cy="64" r="12" fill="#e7000b" opacity="0.25" />
-      <circle className="chart-fade" cx="540" cy="64" r="6" fill="#e7000b" />
-      <text className="chart-fade chart-fade-2" x="558" y="69" fill="#fff" fontSize="14" fontWeight="700">
-        Started in Year 1
-      </text>
-
-      <circle className="chart-fade chart-fade-2" cx="540" cy="222" r="5" fill="#fff" fillOpacity="0.45" />
-      <text className="chart-fade chart-fade-3" x="558" y="227" fill="#fff" fillOpacity="0.7" fontSize="14" fontWeight="600">
-        Waited till Year 3
-      </text>
-
-      {/* axis */}
-      {YEARS.map((label, i) => (
-        <text
-          key={label}
-          className={`chart-fade ${i > 1 ? "chart-fade-2" : ""}`}
-          x={Object.values(X)[i]}
-          y="312"
-          textAnchor="middle"
-          fill="#fff"
-          fillOpacity="0.4"
-          fontSize="12"
-        >
-          {label}
-        </text>
-      ))}
-    </svg>
+      {/* on a phone the end labels sit tight, so the legend carries them too */}
+      <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-xs sm:hidden">
+        <span className="flex items-center gap-2 text-white">
+          <span className="size-2 rounded-full bg-brand" />
+          Started in Year 1
+        </span>
+        <span className="flex items-center gap-2 text-white/60">
+          <span className="size-2 rounded-full bg-white/45" />
+          Waited till Year 3
+        </span>
+      </div>
+    </div>
   );
 }
 
@@ -169,7 +202,12 @@ export default function CostOfWaiting() {
           <Reveal from="top">
             <InView
               activeClass="chart-in"
-              className="rounded-[28px] bg-ink px-6 py-7 shadow-[0_30px_80px_-40px_rgba(10,7,8,0.6)] sm:px-8"
+              className="relative overflow-hidden rounded-[28px] px-6 py-7 shadow-[0_30px_80px_-40px_rgba(10,7,8,0.6)] ring-1 ring-inset ring-white/8 sm:px-8"
+              style={{
+                backgroundImage:
+                  "radial-gradient(120% 90% at 85% 10%, rgba(231,0,11,0.16) 0%, rgba(231,0,11,0) 55%)," +
+                  "linear-gradient(160deg, #141013 0%, #0a0708 60%)",
+              }}
             >
               <p className="mb-2 font-mono text-[11px] font-bold tracking-[0.18em] text-white/40">
                 SKILLS &amp; OPPORTUNITIES (ILLUSTRATIVE)
@@ -203,7 +241,7 @@ export default function CostOfWaiting() {
                 className="group mt-7 inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand/25 transition hover:bg-brand-dark"
               >
                 Get ahead. Register now
-                <span className="transition group-hover:translate-x-1">→</span>
+                <ArrowRight className="size-4 transition group-hover:translate-x-1" />
               </a>
             </Reveal>
           </div>

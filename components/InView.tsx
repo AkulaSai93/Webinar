@@ -7,11 +7,13 @@ import { useEffect, useRef, useState } from "react";
 export default function InView({
   children,
   className = "",
+  style,
   activeClass,
   threshold = 0.3,
 }: {
   children: React.ReactNode;
   className?: string;
+  style?: React.CSSProperties;
   activeClass: string;
   threshold?: number;
 }) {
@@ -37,7 +39,7 @@ export default function InView({
   }, [threshold]);
 
   return (
-    <div ref={ref} className={`${className} ${live ? activeClass : ""}`}>
+    <div ref={ref} className={`${className} ${live ? activeClass : ""}`} style={style}>
       {children}
     </div>
   );

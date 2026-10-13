@@ -1,5 +1,6 @@
 import Reveal from "./Reveal";
 import WhyAttendStack, { type Reason } from "./WhyAttendStack";
+import { ArrowRight } from "./icons";
 
 /* Figma: Webinar / Why attend 23:8728 */
 
@@ -32,18 +33,23 @@ const REASONS: Reason[] = [
 
 export default function WhyAttend() {
   return (
-    <section id="why" className="scroll-mt-24 bg-[#f3f4f6] pt-10">
-      <WhyAttendStack
-        marquee="STOP GUESSING. START WITH A PLAN."
-        reasons={REASONS}
-        badge={
+    <section id="why" className="scroll-mt-24 bg-[#f3f4f6]">
+      <div className="mx-auto max-w-[1152px] px-6 pt-14 text-center">
+        <Reveal from="top">
           <span className="inline-flex h-[38px] items-center rounded-full border border-brand/25 bg-brand/8 px-4 text-sm text-ink/75">
             Why attend
           </span>
-        }
-      />
+        </Reveal>
+      </div>
 
-      <div className="mx-auto -mt-[14vh] max-w-[1152px] px-6 pb-20">
+      <div className="-mt-[16vh]">
+        <WhyAttendStack
+          marquee="STOP GUESSING. START WITH A PLAN."
+          reasons={REASONS}
+        />
+      </div>
+
+      <div className="mx-auto -mt-[26vh] max-w-[1152px] px-6 pb-16 sm:-mt-[14vh] sm:pb-20">
         <Reveal from="top">
           <div className="flex flex-col items-center justify-center gap-7 text-center sm:flex-row">
             <p className="text-lg leading-7 text-ink/60">
@@ -55,7 +61,7 @@ export default function WhyAttend() {
               className="group inline-flex shrink-0 items-center gap-2.5 rounded-full bg-brand px-7 py-4 text-base font-bold leading-6 text-white transition hover:bg-brand-dark"
             >
               Get my plan. Register now
-              <span className="transition group-hover:translate-x-1">→</span>
+              <ArrowRight className="size-4 transition group-hover:translate-x-1" />
             </a>
           </div>
         </Reveal>

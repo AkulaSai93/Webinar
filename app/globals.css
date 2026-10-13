@@ -227,3 +227,16 @@ html {
     rgba(231, 0, 11, 0.06) 28px
   );
 }
+
+/* --- "why attend" card stack ------------------------------------------- */
+
+/* how far the stack shifts up as each new card lands */
+.card-stack {
+  --stack-step: 34px;
+}
+
+@media (min-width: 640px) {
+  .card-stack {
+    --stack-step: 50px;
+  }
+}

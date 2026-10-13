@@ -1,6 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
+
+import { ArrowUpRight } from "./icons";
 
 const LINKS = [
   { label: "About", href: "#about" },
@@ -31,16 +34,14 @@ export default function Navbar() {
       <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4">
         {/* brand */}
         <a href="#" className="flex shrink-0 items-center gap-3">
-          <span className="text-lg font-extrabold tracking-tight text-ink">
-            up<span className="text-brand">Grad</span>
-            <span className="ml-1.5 hidden text-[10px] font-semibold uppercase tracking-[0.12em] text-ink/45 sm:inline">
-              School of Technology
-            </span>
-          </span>
-          <span className="h-6 w-px bg-ink/15" />
-          <span className="text-sm font-bold tracking-[0.22em] text-ink">
-            CATALYST
-          </span>
+          <Image
+            src="/upgrad-logo.png"
+            alt="upGrad School of Technology"
+            width={182}
+            height={64}
+            priority
+            className="h-7 w-auto"
+          />
         </a>
 
         {/* desktop links */}
@@ -63,7 +64,7 @@ export default function Navbar() {
           className="hidden shrink-0 items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand lg:inline-flex"
         >
           Register free
-          <span className="text-xs">↗</span>
+          <ArrowUpRight className="size-3.5" />
         </a>
 
         {/* mobile toggle */}
@@ -120,7 +121,7 @@ export default function Navbar() {
             className="mt-4 flex items-center justify-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand"
           >
             Register free
-            <span className="text-xs">↗</span>
+            <ArrowUpRight className="size-3.5" />
           </a>
         </div>
       )}

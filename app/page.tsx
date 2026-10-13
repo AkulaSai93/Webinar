@@ -4,6 +4,7 @@ import DreamBig from "@/components/DreamBig";
 import Electricity from "@/components/Electricity";
 import Faq from "@/components/Faq";
 import FinalCta from "@/components/FinalCta";
+import Footer from "@/components/Footer";
 import Gap from "@/components/Gap";
 import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
@@ -30,6 +31,7 @@ export default function Home() {
         <FinalCta />
         <Faq />
       </main>
+      <Footer />
     </>
   );
 }

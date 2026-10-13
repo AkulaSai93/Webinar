@@ -155,7 +155,7 @@ export default function Walls() {
 
             <Shard seed={row * 3 + 2}>
               <article
-                className="flex h-[89px] flex-col overflow-hidden rounded-xl"
+                className="flex min-h-[89px] flex-col overflow-hidden rounded-xl sm:h-[89px]"
                 style={{ backgroundColor: tint }}
               >
                 <div className="h-1.5 shrink-0" />
@@ -175,7 +175,7 @@ export default function Walls() {
                         {n}
                       </span>
                     </div>
-                    <p className="truncate pt-0.5 text-sm leading-[22.75px] text-ink/55">
+                    <p className="pt-0.5 text-sm leading-[22.75px] text-ink/55 sm:truncate">
                       {body}
                     </p>
                   </div>

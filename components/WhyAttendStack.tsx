@@ -17,17 +17,14 @@ export type Reason = {
 const BLOB_IN = 0.06; // the gradient container settles
 const FIRST_CARD = 0.2; // the first card climbs out of it
 const PER_CARD = 0.23;
-const STEP = 50; // how far the stack shifts up per new card
+/* the stack step lives in CSS (--stack-step) */
 
 export default function WhyAttendStack({
   marquee,
   reasons,
-  badge,
 }: {
   marquee: string;
   reasons: Reason[];
-  /** rides inside the pinned frame, just above the headline */
-  badge?: React.ReactNode;
 }) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
@@ -64,7 +61,7 @@ export default function WhyAttendStack({
 
   const Card = ({ r, style }: { r: Reason; style?: React.CSSProperties }) => (
     <article
-      className="flex h-[280px] w-[468px] max-w-full flex-col overflow-hidden rounded-[48px] border-4 border-white px-9 py-7 font-geist shadow-[0px_4px_8px_0px_rgba(8,7,49,0.06),0px_14px_14px_0px_rgba(8,7,49,0.05)]"
+      className="flex h-[340px] w-full flex-col overflow-hidden rounded-[36px] border-[3px] border-white px-7 py-6 font-geist shadow-[0px_4px_8px_0px_rgba(8,7,49,0.06),0px_14px_14px_0px_rgba(8,7,49,0.05)] sm:h-[280px] sm:rounded-[48px] sm:border-4 sm:px-9 sm:py-7"
       style={{
         backgroundImage: `linear-gradient(to left, ${r.from}, ${r.to})`,
         ...style,
@@ -74,7 +71,7 @@ export default function WhyAttendStack({
         {r.n}
       </p>
 
-      <h3 className="mt-3 text-[32px] font-normal leading-[1.15] tracking-[-1.2px] text-[#121214] sm:text-[42px] sm:leading-[48px]">
+      <h3 className="mt-3 text-[28px] font-normal leading-[1.15] tracking-[-0.8px] text-[#121214] sm:text-[42px] sm:leading-[48px] sm:tracking-[-1.2px]">
         {r.title}
       </h3>
 
@@ -88,7 +85,6 @@ export default function WhyAttendStack({
   if (still) {
     return (
       <div className="mx-auto flex max-w-[720px] flex-col items-center gap-8 px-6 py-16">
-        {badge}
         {reasons.map((r) => (
           <Card key={r.n} r={r} />
         ))}
@@ -103,14 +99,9 @@ export default function WhyAttendStack({
   );
 
   return (
-    <div ref={wrapRef} className="relative h-[300vh]">
-      <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-        {badge && (
-          <div className="absolute inset-x-0 top-[26%] z-10 flex justify-center">
-            {badge}
-          </div>
-        )}
-
+    <div ref={wrapRef} className="relative h-[220vh] sm:h-[300vh]">
+      <div className="sticky top-0 h-screen overflow-hidden">
+        <div className="relative flex h-full -translate-y-[7vh] items-center px-5 sm:px-0">
         {/* the giant headline, always running */}
         <div
           aria-hidden
@@ -141,7 +132,7 @@ export default function WhyAttendStack({
 
         {/* the gradient container — it clips, so cards rise out of it */}
         <div
-          className="relative mx-auto h-[560px] w-full max-w-[720px] overflow-hidden rounded-[80px]"
+          className="card-stack relative mx-auto h-[520px] w-full max-w-[720px] overflow-hidden rounded-[48px] sm:h-[560px] sm:rounded-[80px]"
           style={{
             transition:
               "transform 900ms cubic-bezier(0.22, 1, 0.36, 1), opacity 700ms ease-out",
@@ -166,20 +157,20 @@ export default function WhyAttendStack({
 
           {reasons.map((r, i) => {
             const out = i < emerged;
-            const rest = -(emerged - 1 - i) * STEP;
+            const back = emerged - 1 - i; // how far up the pile this card sits
             return (
               <div
                 key={r.n}
                 aria-hidden={!out}
                 // no translate utilities here: Tailwind v4 emits the standalone
                 // `translate` property, which would compose with this transform
-                className="absolute left-1/2 top-1/2 flex justify-center"
+                className="absolute left-1/2 top-1/2 flex w-[calc(100%-2.5rem)] max-w-[468px] justify-center sm:w-[468px]"
                 style={{
                   transition:
                     "transform 850ms cubic-bezier(0.22, 1, 0.36, 1), opacity 400ms ease-out",
-                  transform: `translate(-50%, calc(-50% + ${
-                    out ? rest : 330
-                  }px)) rotate(${r.tilt}deg)`,
+                  transform: out
+                    ? `translate(-50%, calc(-50% - ${back} * var(--stack-step))) rotate(${r.tilt}deg)`
+                    : `translate(-50%, calc(-50% + 300px)) rotate(${r.tilt}deg)`,
                   opacity: out ? 1 : 0,
                   zIndex: i + 1,
                 }}
@@ -188,6 +179,7 @@ export default function WhyAttendStack({
               </div>
             );
           })}
+        </div>
         </div>
       </div>
     </div>

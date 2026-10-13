@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { ArrowRight } from "./icons";
 
 /* Figma: Webinar 23:8783 */
 
@@ -136,7 +137,7 @@ export default function Agenda() {
               className="group mt-6 inline-flex items-center gap-2 rounded-full bg-brand px-5 py-3 text-sm font-bold text-white transition hover:bg-brand-dark"
             >
               Register now
-              <span className="transition group-hover:translate-x-1">→</span>
+              <ArrowRight className="size-4 transition group-hover:translate-x-1" />
             </a>
           </div>
           </div>

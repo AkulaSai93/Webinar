@@ -122,7 +122,7 @@ export default function WallStack({
 
   return (
     <BreakContext.Provider value={broken}>
-      <div ref={wrapRef} className="relative h-[300vh]">
+      <div ref={wrapRef} className="relative h-[220vh] sm:h-[300vh]">
         <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden py-10">
           {/* the wall */}
           <div className="mx-auto w-full max-w-4xl px-6">

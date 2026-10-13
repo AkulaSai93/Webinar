@@ -22,7 +22,7 @@ export default function Hero() {
       />
       <div aria-hidden className="absolute inset-0 -z-10 bg-black/[0.62]" />
 
-      <div className="mx-auto flex min-h-[745px] max-w-[1152px] flex-col items-center justify-center gap-12 px-6 py-16 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
+      <div className="mx-auto flex min-h-[640px] sm:min-h-[745px] max-w-[1152px] flex-col items-center justify-center gap-12 px-6 py-16 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
         {/* left — the pitch */}
         <div className="w-full lg:max-w-[533px]">
           <span className="inline-flex items-center gap-2.5 rounded-full border border-white/15 px-4 py-2 text-[11px] font-bold leading-[16.5px] tracking-[1.98px] text-white/75">

@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import Reveal from "./Reveal";
+import { ArrowRight } from "./icons";
 
 const STATS = [
   { value: "1M+", label: "students mentored" },
@@ -149,7 +150,7 @@ export default function Mentor() {
               className="group mt-9 inline-flex items-center gap-2.5 rounded-full bg-brand px-7 py-4 text-base font-bold text-white shadow-lg shadow-brand/25 transition hover:bg-brand-dark"
             >
               Learn from Vishwa. Register now
-              <span className="transition group-hover:translate-x-1">→</span>
+              <ArrowRight className="size-4 transition group-hover:translate-x-1" />
             </a>
           </Reveal>
         </div>

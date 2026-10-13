@@ -42,7 +42,38 @@ const CHIPS = [
 
 export default function FinalCta() {
   return (
-    <section id="final" className="scroll-mt-24 bg-[#1b1b1f] px-6 py-14">
+    <section
+      id="final"
+      className="relative isolate scroll-mt-24 overflow-hidden bg-[#1b1b1f] px-6 py-14"
+    >
+      {/* backdrop: a diagonal red sweep off the top-right, on near-black */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "linear-gradient(212deg," +
+              " rgba(190,64,70,0.55) 0%," +
+              " rgba(150,44,52,0.42) 14%," +
+              " rgba(110,34,44,0.26) 28%," +
+              " rgba(27,26,31,0) 52%)",
+          }}
+        />
+        {/* a softer second pass, so the edge of the beam isn't a hard line */}
+        <div
+          className="absolute -right-32 -top-40 h-[34rem] w-[34rem] rounded-full blur-[120px]"
+          style={{ backgroundColor: "rgba(190,64,70,0.28)" }}
+        />
+        {/* the faint warmth the base picks up along the bottom */}
+        <div
+          className="absolute inset-x-0 bottom-0 h-1/2"
+          style={{
+            backgroundImage:
+              "radial-gradient(70% 100% at 25% 100%, rgba(120,40,42,0.3) 0%, rgba(27,26,31,0) 70%)",
+          }}
+        />
+      </div>
+
       <div className="mx-auto grid max-w-[1152px] items-center gap-12 lg:grid-cols-[1fr_380px] lg:gap-16">
         {/* the last word */}
         <Reveal from="top">

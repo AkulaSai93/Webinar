@@ -1,4 +1,5 @@
 import Reveal from "./Reveal";
+import { ArrowRight } from "./icons";
 
 const SPLIT = [
   {
@@ -63,7 +64,7 @@ export default function Electricity() {
                     <h3 className="text-base font-bold tracking-tight text-ink">
                       {title}
                     </h3>
-                    <p className="mt-1 text-[13px] leading-relaxed text-ink/55">
+                    <p className="mt-1 text-[13px] leading-relaxed text-ink/55 lg:whitespace-nowrap">
                       {body}
                     </p>
                   </div>
@@ -86,7 +87,7 @@ export default function Electricity() {
               className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-dark"
             >
               Be the 2%. Register now
-              <span className="transition group-hover:translate-x-1">→</span>
+              <ArrowRight className="size-4 transition group-hover:translate-x-1" />
             </a>
           </div>
         </Reveal>
