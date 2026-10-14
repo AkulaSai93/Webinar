@@ -33,12 +33,7 @@ const REASONS: Reason[] = [
 
 export default function WhyAttend() {
   return (
-    <section
-      id="why"
-      // the wall's payoff is pinned mid-screen, so ride up into the blank
-      // half-screen it leaves behind
-      className="-mt-[16vh] scroll-mt-24 bg-[#f3f4f6] sm:-mt-[24vh]"
-    >
+    <section id="why" className="scroll-mt-24 bg-[#f3f4f6]">
       <div className="mx-auto max-w-[1152px] px-6 pt-14 text-center">
         <Reveal from="top">
           <span className="inline-flex items-center rounded-full border border-brand/35 bg-brand/10 px-4 py-2 text-sm font-bold text-ink">
