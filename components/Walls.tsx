@@ -156,7 +156,9 @@ function Course({
 
 export default function Walls() {
   return (
-    <section id="about" className="scroll-mt-24 bg-[#f3f4f6]">
+    // the pinned frame centres its contents, so it opens with empty space
+    // above the heading — pull the section up to swallow it
+    <section id="about" className="-mt-16 scroll-mt-24 bg-[#f3f4f6] sm:-mt-24">
       <WallStack
         header={
           <div className="mx-auto flex max-w-[768px] flex-col items-center text-center">

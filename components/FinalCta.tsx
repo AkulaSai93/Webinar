@@ -1,44 +1,12 @@
 import Countdown from "./Countdown";
 import RegistrationForm from "./RegistrationForm";
+import SessionChips from "./SessionChips";
 import Reveal from "./Reveal";
 
 /* Figma: Webinar 35:12518 */
 
 // Change this to the real session start (IST = UTC+5:30).
 const SESSION_START = "2026-10-17T16:00:00+05:30";
-
-function CalendarIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" className="size-4 text-brand" aria-hidden>
-      <rect x="3" y="5" width="18" height="16" rx="2" />
-      <path d="M8 3v4M16 3v4M3 10h18" />
-    </svg>
-  );
-}
-
-function ClockIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="size-4 text-brand" aria-hidden>
-      <circle cx="12" cy="12" r="9" />
-      <path d="M12 7v5l3 2" />
-    </svg>
-  );
-}
-
-function VideoIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="size-4 text-brand" aria-hidden>
-      <rect x="2" y="6" width="13" height="12" rx="2" />
-      <path d="M15 11l6-3v8l-6-3z" />
-    </svg>
-  );
-}
-
-const CHIPS = [
-  { Icon: CalendarIcon, label: "Sat, 17 Oct, 2026" },
-  { Icon: ClockIcon, label: "4:00 PM IST" },
-  { Icon: VideoIcon, label: "Online Live on Zoom" },
-];
 
 export default function FinalCta() {
   return (
@@ -90,17 +58,7 @@ export default function FinalCta() {
             with a plan.
           </p>
 
-          <div className="mt-7 flex flex-wrap items-center gap-3">
-            {CHIPS.map(({ Icon, label }) => (
-              <span
-                key={label}
-                className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-medium text-ink"
-              >
-                <Icon />
-                {label}
-              </span>
-            ))}
-          </div>
+          <SessionChips className="mt-7" />
 
           <div className="mt-8">
             <Countdown target={SESSION_START} tone="contrast" label={false} />

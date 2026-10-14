@@ -13,7 +13,7 @@ const QUESTIONS = [
   "How do I get noticed by top companies before I graduate?",
 ];
 
-const HOLD = 3000;
+const HOLD = 2600;
 
 export default function Questions() {
   const [active, setActive] = useState(0);
@@ -31,7 +31,12 @@ export default function Questions() {
   }, [paused]);
 
   return (
-    <section id="questions" className="scroll-mt-24 overflow-hidden bg-[#f3f4f6] px-6 py-14 sm:py-20">
+    <section
+      id="questions"
+      // the wall's payoff is pinned mid-screen, so ride up into the blank
+      // half-screen it leaves behind
+      className="-mt-[16vh] scroll-mt-24 overflow-hidden bg-[#f3f4f6] px-6 py-14 sm:-mt-[24vh] sm:py-20"
+    >
       <div className="mx-auto max-w-[1152px]">
         <div className="text-center">
           <span className="inline-flex items-center rounded-full border border-brand/35 bg-brand/10 px-4 py-2 text-sm font-bold text-ink">
@@ -39,7 +44,8 @@ export default function Questions() {
           </span>
 
           <h2 className="mx-auto mt-5 max-w-3xl font-display text-[28px] font-medium leading-[1.12] tracking-[-1px] text-ink sm:text-[40px]">
-            Clear answers to the questions keeping you stuck.
+            <span className="text-brand">Clear answers</span> to the questions
+            keeping you stuck.
           </h2>
         </div>
 
@@ -61,8 +67,11 @@ export default function Questions() {
             return (
               <article
                 key={q}
+                onClick={() => !front && setActive(i)}
                 aria-hidden={!front}
                 className={`absolute left-1/2 top-1/2 flex h-[220px] w-[280px] flex-col rounded-[28px] p-7 sm:h-[240px] sm:w-[320px] ${
+                  front ? "" : "cursor-pointer"
+                } ${
                   front
                     ? "bg-brand text-white shadow-[0_28px_60px_-28px_rgba(231,0,11,0.55)]"
                     : "bg-white text-ink shadow-[0_18px_40px_-28px_rgba(10,7,8,0.4)]"
@@ -70,12 +79,14 @@ export default function Questions() {
                 style={{
                   // eased in and out, so it leaves and lands without a jolt
                   transition:
-                    "transform 1400ms cubic-bezier(0.65, 0, 0.35, 1), opacity 1400ms cubic-bezier(0.65, 0, 0.35, 1), background-color 1400ms ease, color 1400ms ease, box-shadow 1400ms ease",
+                    "transform 650ms cubic-bezier(0.65, 0, 0.35, 1), opacity 650ms cubic-bezier(0.65, 0, 0.35, 1), background-color 650ms ease, color 650ms ease, box-shadow 650ms ease",
                   willChange: "transform, opacity",
                   transform: `translate(-50%, -50%) translateX(calc(${rel} * var(--q-step))) scale(${
                     front ? 1 : near ? 0.86 : 0.74
                   }) rotate(${front ? 0 : rel * 1.5}deg)`,
                   opacity: front ? 1 : near ? 0.5 : 0,
+                  // the hidden cards sit behind the stage, so ignore clicks
+                  pointerEvents: front || near ? "auto" : "none",
                   zIndex: front ? 3 : near ? 2 : 1,
                 }}
               >

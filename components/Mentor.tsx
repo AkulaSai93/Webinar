@@ -12,7 +12,7 @@ const STATS = [
 
 const CREDENTIALS = [
   {
-    lead: "Lead teams at companies you dream of.",
+    lead: "Cracked the companies you dream of.",
     rest: "Oracle, PayPal, Walmart, Amazon, LinkedIn.",
   },
   { lead: "Has led tech teams", rest: "as a CIO and a founder." },

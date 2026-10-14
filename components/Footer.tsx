@@ -53,7 +53,7 @@ export default function Footer() {
             href="#register"
             className="group mt-9 inline-flex items-center gap-2.5 rounded-full bg-white px-8 py-4 text-base font-bold text-brand shadow-[0_18px_40px_-18px_rgba(10,7,8,0.45)] transition hover:bg-white/90"
           >
-            Save your seat
+            Register now
             <ArrowRight className="size-4 transition group-hover:translate-x-1" />
           </a>
         </div>

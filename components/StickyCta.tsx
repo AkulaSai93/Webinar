@@ -10,7 +10,7 @@ export default function StickyCta() {
             Sat, 17 Oct · 4:00 PM IST
           </p>
           <p className="truncate text-[11px] leading-tight text-ink/55">
-            Free · Live on Zoom · Limited seats
+            Live on Zoom · Limited seats
           </p>
         </div>
 
@@ -18,7 +18,7 @@ export default function StickyCta() {
           href="#register"
           className="ml-auto inline-flex shrink-0 items-center gap-2 rounded-full bg-brand px-5 py-3 text-sm font-bold text-white shadow-lg shadow-brand/25 transition active:bg-brand-dark"
         >
-          Register free
+          Register now
           <ArrowRight className="size-4" />
         </a>
       </div>

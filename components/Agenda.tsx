@@ -77,6 +77,55 @@ const TOPICS: Topic[] = [
   },
 ];
 
+/** The sneak peek: what this topic gives away, and what it holds back. */
+function Peek({ topic, className = "" }: { topic: Topic; className?: string }) {
+  return (
+    <div className={`rounded-[28px] bg-[#1b1b1f] p-6 sm:p-8 ${className}`}>
+          <span className="font-mono text-xs text-brand">{topic.n}</span>
+
+          <h3 className="mt-2 font-display text-xl font-medium leading-snug tracking-tight text-white sm:text-2xl">
+            {topic.title}
+          </h3>
+
+          <ul className="mt-6 space-y-3">
+            {topic.points.map((p) => (
+              <li key={p} className="flex items-start gap-3 text-sm leading-6 text-white/75 sm:text-base">
+                <Tick />
+                {p}
+              </li>
+            ))}
+          </ul>
+
+          {/* everything past this point happens live — the teaser is
+              blurred with a text shadow rather than filter: blur, which
+              would push it onto its own layer and cut the panel's corners */}
+          <div className="relative mt-6 overflow-hidden rounded-2xl bg-white/[0.04] p-6">
+            <p
+              aria-hidden
+              className="select-none text-sm leading-6 text-transparent"
+              style={{ textShadow: "0 0 7px rgba(255,255,255,0.45)" }}
+            >
+              {topic.locked}
+            </p>
+
+            <div className="absolute inset-0 flex items-center justify-center gap-2.5 bg-[#1b1b1f]/35 px-3 sm:gap-3 sm:px-4">
+              <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-white/10 text-white/70">
+                <Lock />
+              </span>
+
+              <a
+                href="#register"
+                className="group inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-full bg-brand px-4 py-3 text-[13px] font-bold text-white transition hover:bg-brand-dark sm:px-5 sm:text-sm"
+              >
+                Hear it live. Register now
+                <ArrowRight className="size-4 transition group-hover:translate-x-1" />
+              </a>
+            </div>
+          </div>
+    </div>
+  );
+}
+
 function Tick() {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 size-4 shrink-0 text-emerald-400" aria-hidden>
@@ -229,55 +278,19 @@ export default function Agenda() {
 
                     </span>
                   </button>
+
+                  {/* on a phone it belongs under the topic it describes */}
+                  {on && <Peek topic={topic} className="mb-4 ml-[39px] lg:hidden" />}
                 </li>
               );
             })}
           </ol>
 
-          {/* the sneak peek, with the rest held back for the session */}
-          <div className="rounded-[28px] bg-[#1b1b1f] p-6 sm:p-8 lg:sticky lg:top-28 lg:self-start">
-            <span className="font-mono text-xs text-brand">{topic.n}</span>
-
-            <h3 className="mt-2 font-display text-xl font-medium leading-snug tracking-tight text-white sm:text-2xl">
-              {topic.title}
-            </h3>
-
-            <ul className="mt-6 space-y-3">
-              {topic.points.map((p) => (
-                <li key={p} className="flex items-start gap-3 text-sm leading-6 text-white/75 sm:text-base">
-                  <Tick />
-                  {p}
-                </li>
-              ))}
-            </ul>
-
-            {/* everything past this point happens live — the teaser is
-                blurred with a text shadow rather than filter: blur, which
-                would push it onto its own layer and cut the panel's corners */}
-            <div className="relative mt-6 overflow-hidden rounded-2xl bg-white/[0.04] p-6">
-              <p
-                aria-hidden
-                className="select-none text-sm leading-6 text-transparent"
-                style={{ textShadow: "0 0 7px rgba(255,255,255,0.45)" }}
-              >
-                {topic.locked}
-              </p>
-
-              <div className="absolute inset-0 flex items-center justify-center gap-3 bg-[#1b1b1f]/35 px-4">
-                <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-white/10 text-white/70">
-                  <Lock />
-                </span>
-
-                <a
-                  href="#register"
-                  className="group inline-flex items-center gap-2 rounded-full bg-brand px-5 py-3 text-sm font-bold text-white transition hover:bg-brand-dark"
-                >
-                  Hear it live. Register now
-                  <ArrowRight className="size-4 transition group-hover:translate-x-1" />
-                </a>
-              </div>
-            </div>
-          </div>
+          {/* on a wide screen it rides alongside the list */}
+          <Peek
+            topic={topic}
+            className="hidden lg:sticky lg:top-28 lg:block lg:self-start"
+          />
         </div>
       </div>
     </section>

@@ -63,7 +63,7 @@ export default function Navbar() {
           href="#register"
           className="hidden shrink-0 items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand lg:inline-flex"
         >
-          Register free
+          Register now
           <ArrowUpRight className="size-3.5" />
         </a>
 
@@ -120,7 +120,7 @@ export default function Navbar() {
             onClick={() => setOpen(false)}
             className="mt-4 flex items-center justify-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand"
           >
-            Register free
+            Register now
             <ArrowUpRight className="size-3.5" />
           </a>
         </div>

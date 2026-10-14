@@ -3,10 +3,10 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 
 /** Where each phase sits along the pinned scroll, 0 → 1. */
-const START = 0.05; // nothing on screen before this
-const BUILT = 0.46; // all bricks have landed by here
-const BREAK = 0.6; // the wall shatters
-const PAYOFF = 0.64; // the message pushes out from the middle
+const START = 0.04; // nothing on screen before this
+const BUILT = 0.58; // all bricks have landed by here
+const BREAK = 0.78; // the wall shatters
+const PAYOFF = 0.83; // the message pushes out from the middle
 
 const BreakContext = createContext(false);
 
@@ -122,7 +122,7 @@ export default function WallStack({
 
   return (
     <BreakContext.Provider value={broken}>
-      <div ref={wrapRef} className="relative h-[220vh] sm:h-[300vh]">
+      <div ref={wrapRef} className="relative h-[150vh] sm:h-[190vh]">
         <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden py-10">
           {/* the wall */}
           <div className="mx-auto w-full max-w-4xl px-6">

@@ -26,7 +26,7 @@ function ArrowUpRight() {
 }
 
 export default function RegistrationForm({
-  cta = "Reserve my free seat",
+  cta = "Register now",
   /** the hero card carries the session details; the closing card does not */
   meta = true,
   /** a tighter card, for sections that need less height */
@@ -186,15 +186,13 @@ export default function RegistrationForm({
         {/* the clock lives under the button now */}
         {meta && (
           <div className="mt-4 border-t border-ink/8 pt-4">
+            <p className="mb-2.5 text-center text-[10px] font-bold tracking-[0.18em] text-ink/45">
+              REGISTRATION CLOSES IN
+            </p>
             <Countdown target={SESSION_START} tone="light" size="sm" align="center" label={false} />
           </div>
         )}
 
-        {meta && (
-          <p className="mt-2.5 text-center text-[11px] leading-4 text-ink/40">
-            100% free · Limited seats · No spam
-          </p>
-        )}
       </form>
     </div>
   );
