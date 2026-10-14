@@ -218,7 +218,10 @@ export default function WallStack({
   }, []);
 
   return (
-    <div ref={rootRef} className="mx-auto w-full max-w-4xl px-6 py-14 sm:py-20">
+    <div
+      ref={rootRef}
+      className="mx-auto w-full max-w-4xl overflow-hidden px-6 py-14 sm:py-20"
+    >
       {header}
 
       <div ref={stageRef} className="relative mt-8">
