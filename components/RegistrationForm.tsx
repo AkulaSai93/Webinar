@@ -87,11 +87,18 @@ export default function RegistrationForm({
 
   return (
     <div
-      className={`rounded-2xl border border-ink/10 bg-white ${
-        compact ? "p-6" : "p-6"
-      }`}
+      className="relative overflow-hidden rounded-2xl border border-ink/10 bg-white p-6"
     >
-      <h2 className={`font-bold tracking-[-0.6px] text-ink ${compact ? "text-xl leading-7" : "text-2xl leading-8"}`}>
+      {/* the corner flag */}
+      <span className="absolute right-0 top-0 rounded-bl-2xl rounded-tr-2xl bg-brand px-4 py-2.5 text-[13px] font-medium text-white sm:px-5 sm:py-3 sm:text-sm">
+        Limited Seats Only
+      </span>
+
+      <h2
+        className={`pr-32 font-bold tracking-[-0.6px] text-ink sm:pr-40 ${
+          compact ? "text-xl leading-7" : "text-2xl leading-8"
+        }`}
+      >
         Save your seat
       </h2>
 

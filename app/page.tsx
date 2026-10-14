@@ -21,10 +21,10 @@ export default function Home() {
         <Marquee />
         <DreamBig />
         <Walls />
-        <Questions />
+        <WhyAttend />
         <Mentor />
         <Agenda />
-        <WhyAttend />
+        <Questions />
         <FinalCta />
         <Faq />
       </main>

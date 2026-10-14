@@ -64,12 +64,7 @@ export default function Questions() {
   }, [paused]);
 
   return (
-    <section
-      id="questions"
-      // the wall's payoff is pinned mid-screen, so ride up into the blank
-      // half-screen it leaves behind
-      className="-mt-[16vh] scroll-mt-24 overflow-hidden bg-[#f3f4f6] px-6 py-14 sm:-mt-[24vh] sm:py-20"
-    >
+    <section id="questions" className="scroll-mt-24 overflow-hidden bg-[#f3f4f6] px-6 py-14 sm:py-20">
       <div className="mx-auto max-w-[1152px]">
         <div className="text-center">
           <span className="inline-flex items-center rounded-full border border-brand/35 bg-brand/10 px-4 py-2 text-sm font-bold text-ink">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { ArrowRight } from "./icons";
 
 /* Figma: Webinar 23:8783 */
@@ -153,48 +153,7 @@ function Lock() {
 
 export default function Agenda() {
   const [active, setActive] = useState(0);
-  const listRef = useRef<HTMLOListElement>(null);
-  // a click wins for a moment, so scrolling doesn't snatch the topic back
-  const heldUntil = useRef(0);
   const topic = TOPICS[active];
-
-  const pick = (i: number) => {
-    heldUntil.current = Date.now() + 1200;
-    setActive(i);
-  };
-
-  // walking down the list with the scroll moves through the topics too
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    let frame = 0;
-    const sync = () => {
-      frame = 0;
-      const list = listRef.current;
-      if (!list || Date.now() < heldUntil.current) return;
-
-      const { top, height } = list.getBoundingClientRect();
-      const line = window.innerHeight * 0.45;
-      const progress = (line - top) / height;
-      if (progress < 0 || progress > 1) return;
-
-      const i = Math.min(TOPICS.length - 1, Math.floor(progress * TOPICS.length));
-      setActive((cur) => (cur === i ? cur : i));
-    };
-
-    const onScroll = () => {
-      if (!frame) frame = requestAnimationFrame(sync);
-    };
-
-    sync();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      if (frame) cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
 
   return (
     <section id="agenda" className="scroll-mt-24 bg-[#f3f4f6] px-6 pb-14 pt-14 sm:pb-20 sm:pt-20">
@@ -215,7 +174,7 @@ export default function Agenda() {
 
         <div className="mt-10 grid gap-6 lg:mt-14 lg:grid-cols-[1fr_1.05fr] lg:gap-10">
           {/* the topics, strung along one running line */}
-          <ol ref={listRef} className="relative">
+          <ol className="relative">
             {/* the rail */}
             <span
               aria-hidden
@@ -229,7 +188,7 @@ export default function Agenda() {
                 <li key={n} className="relative">
                   <button
                     type="button"
-                    onClick={() => pick(i)}
+                    onClick={() => setActive(i)}
                     aria-pressed={on}
                     className="group flex w-full items-start gap-4 py-3 text-left sm:gap-5"
                   >
