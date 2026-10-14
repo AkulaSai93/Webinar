@@ -14,7 +14,7 @@ const LOGOS = [
 
 function RocketIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="size-2.5 shrink-0 sm:size-[18px]" aria-hidden>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="size-4 shrink-0 sm:size-[18px]" aria-hidden>
       <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
       <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
       <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
@@ -45,7 +45,7 @@ export default function DreamBig() {
         {/* the ambition */}
         <div className="flex w-full flex-col items-center gap-8">
           <Reveal from="top" className="flex flex-col items-center gap-5">
-            <div className="-mx-4 flex w-screen max-w-[calc(100%+2rem)] flex-nowrap items-center justify-center gap-1.5 sm:mx-0 sm:w-full sm:max-w-full sm:gap-5">
+            <div className="flex w-full flex-wrap items-center justify-center gap-x-4 gap-y-3 sm:flex-nowrap sm:gap-5">
               {LOGOS.map(({ src, alt, width }, i) => (
                 <Image
                   key={alt}
@@ -54,17 +54,17 @@ export default function DreamBig() {
                   width={width * 4}
                   height={120}
                   priority={i < 2}
-                  className="h-[11px] w-auto shrink-0 object-contain sm:h-[30px]"
+                  className="h-[21px] w-auto shrink-0 object-contain sm:h-[30px]"
                   style={{ maxWidth: width }}
                 />
               ))}
 
-              <span className="inline-flex shrink-0 items-center justify-center gap-1 bg-white px-1.5 py-1 font-display text-[8px] font-semibold text-brand sm:gap-2.5 sm:px-5 sm:py-2 sm:text-[15px]">
+              <span className="inline-flex shrink-0 items-center justify-center gap-2 bg-white px-3 py-1.5 font-display text-[13px] font-semibold text-brand sm:gap-2.5 sm:px-5 sm:py-2 sm:text-[15px]">
                 <RocketIcon />
                 Your Own Startup
               </span>
 
-              <span className="shrink-0 font-display text-[8px] font-semibold text-brand sm:text-[15px]">
+              <span className="shrink-0 font-display text-[13px] font-semibold text-brand sm:text-[15px]">
                 …but how?
               </span>
             </div>

@@ -11,7 +11,8 @@ const DETAILS = [
 export default function Footer() {
   return (
     <footer
-      className="relative overflow-hidden px-6 pt-20 text-white sm:pt-32"
+      /* the sticky bar sits over the last line on mobile, so leave it room */
+      className="relative overflow-hidden px-6 pb-[72px] pt-20 text-white sm:pt-32 lg:pb-0"
       style={{
         // one wide bloom rising from the bottom centre: the corners stay on
         // the page colour and the edge of the red is a soft arc, not a band

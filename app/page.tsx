@@ -31,8 +31,6 @@ export default function Home() {
         <Faq />
       </main>
       <Footer />
-      {/* room for the sticky bar so it never covers the last line */}
-      <div aria-hidden className="h-[76px] bg-[#f3f4f6] lg:hidden" />
       <StickyCta />
     </>
   );
