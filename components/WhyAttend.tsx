@@ -36,7 +36,7 @@ export default function WhyAttend() {
     <section id="why" className="scroll-mt-24 bg-[#f3f4f6]">
       <div className="mx-auto max-w-[1152px] px-6 pt-14 text-center">
         <Reveal from="top">
-          <span className="inline-flex h-[38px] items-center rounded-full border border-brand/35 bg-brand/10 px-4 text-sm font-bold text-ink">
+          <span className="inline-flex items-center rounded-full border border-brand/35 bg-brand/10 px-4 py-2 text-sm font-bold text-ink">
             Why attend
           </span>
         </Reveal>

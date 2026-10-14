@@ -29,7 +29,7 @@ export default function DreamBig() {
       <div className="mx-auto flex max-w-[921px] flex-col items-center gap-[60px]">
         {/* heading */}
         <Reveal from="top" className="flex flex-col items-center gap-3 text-center">
-          <span className="inline-flex items-center rounded-full border border-brand/35 bg-brand/10 px-3.5 py-1.5 text-[10px] font-bold leading-[15px] tracking-[1.6px] text-ink">
+          <span className="inline-flex items-center rounded-full border border-brand/35 bg-brand/10 px-4 py-2 text-sm font-bold text-ink">
             Who it&apos;s for
           </span>
 
