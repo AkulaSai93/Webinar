@@ -240,3 +240,15 @@ html {
     --stack-step: 50px;
   }
 }
+
+/* --- question carousel -------------------------------------------------- */
+
+.question-stage {
+  --q-step: 240px;
+}
+
+@media (min-width: 640px) {
+  .question-stage {
+    --q-step: 330px;
+  }
+}

@@ -10,6 +10,7 @@ import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
 import Mentor from "@/components/Mentor";
 import Navbar from "@/components/Navbar";
+import Questions from "@/components/Questions";
 import Walls from "@/components/Walls";
 import WhyAttend from "@/components/WhyAttend";
 
@@ -28,6 +29,7 @@ export default function Home() {
         <WhyAttend />
         <Mentor />
         <Agenda />
+        <Questions />
         <FinalCta />
         <Faq />
       </main>
