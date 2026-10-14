@@ -3,15 +3,16 @@ import Image from "next/image";
 import Reveal from "./Reveal";
 import { ArrowRight } from "./icons";
 
+/* Figma: Webinar 70:26221 */
 const STATS = [
-  { value: "1M+", label: "students mentored" },
-  { value: "5", label: "top tech giants" },
-  { value: "CIO", label: "ex-Physics Wallah" },
+  { label: "Mentored", value: "1M+ Students" },
+  { label: "Worked at", value: "Top 5 tech giants" },
+  { label: "ex-Physics Wallah", value: "CIO" },
 ];
 
 const CREDENTIALS = [
   {
-    lead: "Cracked the companies you dream of.",
+    lead: "Lead teams at companies you dream of.",
     rest: "Oracle, PayPal, Walmart, Amazon, LinkedIn.",
   },
   { lead: "Has led tech teams", rest: "as a CIO and a founder." },
@@ -122,11 +123,11 @@ export default function Mentor() {
           <div className="mt-8 grid gap-3 sm:grid-cols-3">
             {STATS.map(({ value, label }, i) => (
               <Reveal key={label} from="top" delay={i * 110}>
-                <div className="h-full rounded-2xl bg-white p-5">
-                  <p className="font-display text-2xl font-bold tracking-tight text-ink">
+                <div className="flex h-full flex-col justify-center rounded-2xl bg-white p-5">
+                  <p className="text-sm text-ink/55">{label}</p>
+                  <p className="mt-1 font-display text-base font-bold tracking-tight text-ink">
                     {value}
                   </p>
-                  <p className="mt-1 text-sm text-ink/55">{label}</p>
                 </div>
               </Reveal>
             ))}

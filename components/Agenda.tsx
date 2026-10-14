@@ -160,7 +160,7 @@ export default function Agenda() {
           </h2>
 
           <p className="mt-3 text-sm text-ink/55 sm:text-base">
-            Pick any topic for a sneak peek. The full answers are live.
+            Get everything answered live online.
           </p>
         </div>
 

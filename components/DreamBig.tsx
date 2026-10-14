@@ -71,8 +71,8 @@ export default function DreamBig() {
           </Reveal>
 
           <Reveal from="top" delay={120}>
-            <p className="text-center font-display text-xl font-medium leading-snug text-[#0a0a0b] sm:text-2xl">
-              If that ambition is bigger than your campus you&apos;re exactly
+            <p className="text-center font-display text-xl font-medium leading-snug text-[#0a0a0b] sm:text-2xl lg:whitespace-nowrap">
+              If that ambition is bigger than your campus, you&apos;re exactly
               who this session is for.
             </p>
           </Reveal>

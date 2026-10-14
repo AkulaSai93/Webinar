@@ -1,7 +1,5 @@
 import Agenda from "@/components/Agenda";
-import CostOfWaiting from "@/components/CostOfWaiting";
 import DreamBig from "@/components/DreamBig";
-import Electricity from "@/components/Electricity";
 import Faq from "@/components/Faq";
 import FinalCta from "@/components/FinalCta";
 import Footer from "@/components/Footer";
@@ -22,15 +20,13 @@ export default function Home() {
       <main>
         <Hero />
         <Marquee />
-        <DreamBig />
+        <Questions />
         <Mentor />
+        <Agenda />
+        <DreamBig />
         <Walls />
         <Gap />
-        <Electricity />
-        <CostOfWaiting />
         <WhyAttend />
-        <Agenda />
-        <Questions />
         <FinalCta />
         <Faq />
       </main>

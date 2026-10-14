@@ -1,10 +1,6 @@
 import Image from "next/image";
 
-import Countdown from "./Countdown";
 import RegistrationForm from "./RegistrationForm";
-
-// Change this to the real session start (IST = UTC+5:30).
-const SESSION_START = "2026-10-17T16:00:00+05:30";
 
 /* Figma: Webinar 28:10509 */
 
@@ -43,8 +39,13 @@ export default function Hero() {
             .
           </p>
 
-          <div className="mt-9">
-            <Countdown target={SESSION_START} />
+          {/* when and where, on one line */}
+          <div className="mt-9 flex flex-wrap items-center gap-4 border-t border-white/20 pt-3.5 text-xs font-semibold tracking-[0.3px] text-white sm:text-sm">
+            <span>17 OCT</span>
+            <span className="size-1 rounded-full bg-brand" />
+            <span>4:00 PM IST</span>
+            <span className="size-1 rounded-full bg-brand" />
+            <span>ONLINE · ZOOM</span>
           </div>
         </div>
 

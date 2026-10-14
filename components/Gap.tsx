@@ -2,13 +2,13 @@ import Reveal from "./Reveal";
 import RiseIn from "./RiseIn";
 import { ArrowRight } from "./icons";
 
-/* Figma: Webinar 31:11744 */
+/* Figma: Webinar 68:26100 */
 
 const COLLEGE = [
   "Physics, Chemistry, Drawing",
   "Theory you memorise for exams",
-  "Studying the night before",
-  "Marks, but nothing built",
+  "Pressure of maintaining a minimum 70% attendance",
+  "Projects, Assignments, and File",
 ];
 
 const INDUSTRY = [

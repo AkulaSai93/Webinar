@@ -109,7 +109,7 @@ export default function WallStack({
       <BreakContext.Provider value={false}>
         <div className="mx-auto w-full max-w-4xl px-6 py-14 sm:py-24">
           {header}
-          <div className="mt-8 flex flex-col-reverse gap-3">
+          <div className="mt-8 flex flex-col-reverse gap-[9px]">
             {children.map((child, i) => (
               <div key={i}>{child}</div>
             ))}
@@ -138,7 +138,7 @@ export default function WallStack({
 
             {/* column-reverse: brick 01 settles at the bottom and the wall
                 grows upward as each new one falls in from above. */}
-            <div className="mt-8 flex flex-col-reverse gap-3">
+            <div className="mt-8 flex flex-col-reverse gap-[9px]">
               {children.map((child, i) => (
                 <div
                   key={i}

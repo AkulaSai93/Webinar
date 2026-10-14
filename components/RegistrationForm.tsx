@@ -2,15 +2,19 @@
 
 import { useState } from "react";
 
-/* Figma: Webinar 28:10548 */
+import Countdown from "./Countdown";
+
+/* Figma: Webinar 28:10548, 61:25678 */
+
+// Change this to the real session start (IST = UTC+5:30).
+const SESSION_START = "2026-10-17T16:00:00+05:30";
 
 type Errors = { fullName?: string; phone?: string; email?: string };
 
 const inputBase =
   "w-full rounded-xl border border-ink/12 bg-[#fafafa] px-4 text-sm text-ink placeholder:text-ink/30 outline-none transition focus:border-brand focus:bg-white focus:ring-2 focus:ring-brand/15";
 
-const labelClass =
-  "mb-2 block text-xs font-bold leading-4 tracking-[0.96px] text-ink/70";
+const labelClass = "sr-only";
 
 function ArrowUpRight() {
   return (
@@ -78,43 +82,30 @@ export default function RegistrationForm({
     );
   }
 
-  const inputClass = `${inputBase} ${compact ? "h-11" : "h-[50px]"}`;
-  const fieldGap = compact ? "pt-4" : "pt-5";
+  const inputClass = `${inputBase} ${compact ? "h-11" : "h-12"}`;
+  const fieldGap = compact ? "pt-3" : "pt-3";
 
   return (
     <div
       className={`rounded-2xl border border-ink/10 bg-white ${
-        compact ? "p-6" : "p-8"
+        compact ? "p-6" : "p-6"
       }`}
     >
       <h2 className={`font-bold tracking-[-0.6px] text-ink ${compact ? "text-xl leading-7" : "text-2xl leading-8"}`}>
         Save your seat
       </h2>
-      <p className="mt-1 text-sm leading-5 text-ink/50">
-        Join link &amp; reminders come on WhatsApp and email.
-      </p>
 
-      {meta && (
-        <div className="mt-5 flex flex-wrap items-center gap-4 border-y border-ink/8 py-3 text-xs font-semibold leading-4 tracking-[0.3px] text-ink/70">
-          <span>17 OCT</span>
-          <span className="size-1 rounded-full bg-brand" />
-          <span>4:00 PM IST</span>
-          <span className="size-1 rounded-full bg-brand" />
-          <span>ONLINE · ZOOM</span>
-        </div>
-      )}
-
-      <form onSubmit={handleSubmit} noValidate className={compact ? "mt-5" : "mt-6"}>
+      <form onSubmit={handleSubmit} noValidate className="mt-4">
         <div>
           <label htmlFor="fullName" className={labelClass}>
-            FULL NAME
+            Full name
           </label>
           <input
             id="fullName"
             name="fullName"
             type="text"
             autoComplete="name"
-            placeholder="Arjun Sharma"
+            placeholder="Full name"
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
             aria-invalid={Boolean(errors.fullName)}
@@ -130,10 +121,10 @@ export default function RegistrationForm({
 
         <div className={fieldGap}>
           <label htmlFor="phone" className={labelClass}>
-            WHATSAPP NUMBER
+            WhatsApp number
           </label>
           <div className="flex gap-2">
-            <span className={`inline-flex shrink-0 items-center rounded-xl border border-ink/12 bg-[#f2f2f2] px-3.5 text-sm font-semibold text-ink/70 ${compact ? "h-11" : "h-[50px]"}`}>
+            <span className={`inline-flex shrink-0 items-center rounded-xl border border-ink/12 bg-[#f2f2f2] px-3.5 text-sm font-semibold text-ink/70 ${compact ? "h-11" : "h-12"}`}>
               +91
             </span>
             <input
@@ -143,7 +134,7 @@ export default function RegistrationForm({
               inputMode="numeric"
               maxLength={10}
               autoComplete="tel"
-              placeholder="10-digit number"
+              placeholder="WhatsApp number"
               value={phone}
               onChange={(e) => setPhone(e.target.value.replace(/\D/g, ""))}
               aria-invalid={Boolean(errors.phone)}
@@ -167,7 +158,7 @@ export default function RegistrationForm({
             name="email"
             type="email"
             autoComplete="email"
-            placeholder="you@email.com"
+            placeholder="Email address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             aria-invalid={Boolean(errors.email)}
@@ -184,7 +175,7 @@ export default function RegistrationForm({
         <button
           type="submit"
           disabled={submitting}
-          className={`group flex w-full items-center justify-center gap-3 rounded-xl bg-ink px-6 ${compact ? "mt-5 py-3.5" : "mt-5 py-4"} text-sm font-semibold leading-5 text-white transition hover:bg-brand focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60`}
+          className={`group flex w-full items-center justify-center gap-3 rounded-xl bg-ink px-6 ${compact ? "mt-4 py-3.5" : "mt-4 py-3.5"} text-sm font-semibold leading-5 text-white transition hover:bg-brand focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60`}
         >
           {submitting ? "Reserving your seat…" : cta}
           <span className="flex size-6 items-center justify-center rounded-full bg-white text-ink transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
@@ -192,8 +183,15 @@ export default function RegistrationForm({
           </span>
         </button>
 
+        {/* the clock lives under the button now */}
         {meta && (
-          <p className="mt-5 text-center text-xs leading-4 text-ink/40">
+          <div className="mt-4 border-t border-ink/8 pt-4">
+            <Countdown target={SESSION_START} tone="light" size="sm" align="center" label={false} />
+          </div>
+        )}
+
+        {meta && (
+          <p className="mt-2.5 text-center text-[11px] leading-4 text-ink/40">
             100% free · Limited seats · No spam
           </p>
         )}

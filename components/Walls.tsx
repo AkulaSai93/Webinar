@@ -1,4 +1,3 @@
-import { BRICK_ART } from "./BrickArt";
 import WallStack, { Shard } from "./WallStack";
 
 /* Figma: Webinar 28:10237 */
@@ -85,12 +84,72 @@ const WALLS = [
   },
 ];
 
-/** A blank brick in the wall — carries a small coding sketch. */
-function Brick({ art }: { art: number }) {
-  const Art = BRICK_ART[art % BRICK_ART.length];
+/** The blank bricks carry code, one snippet each. */
+const BRICK_CODE = [
+  "<div>",
+  "const",
+  "{ }",
+  "</>",
+  "git",
+  "return",
+  "npm",
+  "=>",
+  "let",
+  "()",
+  "async",
+  "push",
+  "[ ]",
+  "fn",
+  "map",
+  "===",
+];
+
+/** the moulded face every block in the wall shares: a squared-off brick with
+ *  a lit top edge, a shaded underside and a dark mortar line all round */
+const BRICK_FACE: React.CSSProperties = {
+  borderRadius: "2px",
+  border: "1px solid rgba(10,7,8,0.14)",
+  boxShadow:
+    "inset 0 1.5px 0 rgba(255,255,255,0.95)," +
+    " inset 0 -4px 6px -3px rgba(10,7,8,0.22)",
+};
+
+function Brick({ art, className = "" }: { art: number; className?: string }) {
+  const code = BRICK_CODE[art % BRICK_CODE.length];
   return (
-    <div className="flex h-full items-center justify-center rounded-xl border border-ink/8 bg-ink/[0.035] px-4">
-      <Art className="h-[72%] w-auto max-w-full opacity-90" />
+    <div
+      className={`flex h-full items-center justify-center overflow-hidden px-2 ${className}`}
+      style={{
+        ...BRICK_FACE,
+        backgroundImage: "linear-gradient(180deg, #eae7e5 0%, #d8d4d1 100%)",
+      }}
+    >
+      <span className="select-none truncate font-mono text-[11px] font-bold tracking-tight text-ink/25 sm:text-sm">
+        {code}
+      </span>
+    </div>
+  );
+}
+
+/** a course of small bricks, so the filler reads as masonry, not one slab */
+function Course({
+  seed,
+  from,
+  count,
+  className = "",
+}: {
+  seed: number;
+  from: number;
+  count: number;
+  className?: string;
+}) {
+  return (
+    <div className={`grid h-[89px] gap-[3px] ${className}`} style={{ gridTemplateColumns: `repeat(${count}, minmax(0, 1fr))` }}>
+      {Array.from({ length: count }, (_, i) => (
+        <Shard key={i} seed={seed + i}>
+          <Brick art={from + i} />
+        </Shard>
+      ))}
     </div>
   );
 }
@@ -106,13 +165,13 @@ export default function Walls() {
             </span>
 
             <h2 className="mt-4 text-[26px] font-bold leading-[1.15] tracking-[-0.9px] text-ink sm:text-[36px] sm:leading-[41.4px]">
-              Between you and that{" "}
+              Between you and your{" "}
               <span className="text-brand">dream stands</span> a wall.
             </h2>
 
             <p className="mt-3 max-w-[512px] text-sm leading-[22.75px] text-ink/55">
-              Talent was never the problem. Almost every first-year hits these
-              four walls, and most never get past them.
+              Almost every first-year hits these four walls, and most never
+              get past them.
             </p>
           </div>
         }
@@ -138,20 +197,28 @@ export default function Walls() {
         {WALLS.map(({ n, title, body, Icon, tint, chip }, row) => (
           <div
             key={n}
-            className={`grid gap-3 ${
+            className={`grid gap-[3px] ${
               row % 2 === 0
-                ? "sm:grid-cols-[0.25fr_1fr_0.4fr]"
-                : "sm:grid-cols-[0.4fr_1fr_0.25fr]"
+                ? "sm:grid-cols-[0.3fr_1fr_0.42fr]"
+                : "sm:grid-cols-[0.42fr_1fr_0.3fr]"
             }`}
           >
-            <Shard seed={row * 3 + 1} className="hidden h-[89px] sm:block">
-              <Brick art={row * 2} />
-            </Shard>
+            <Course
+              seed={row * 9 + 1}
+              from={row * 4}
+              count={row % 2 === 0 ? 2 : 3}
+              className="hidden sm:grid"
+            />
 
-            <Shard seed={row * 3 + 2}>
+            <Shard seed={row * 9 + 4}>
               <article
-                className="flex min-h-[89px] flex-col overflow-hidden rounded-xl sm:h-[89px]"
-                style={{ backgroundColor: tint }}
+                className="flex min-h-[89px] flex-col overflow-hidden sm:h-[89px]"
+                style={{
+                  backgroundColor: tint,
+                  backgroundImage:
+                    "linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(10,7,8,0.05) 100%)",
+                  ...BRICK_FACE,
+                }}
               >
                 <div className="h-1.5 shrink-0" />
                 <div className="flex items-center gap-4 px-5 py-3.5">
@@ -178,9 +245,12 @@ export default function Walls() {
               </article>
             </Shard>
 
-            <Shard seed={row * 3 + 3} className="hidden h-[89px] sm:block">
-              <Brick art={row * 2 + 1} />
-            </Shard>
+            <Course
+              seed={row * 9 + 5}
+              from={row * 4 + 2}
+              count={row % 2 === 0 ? 3 : 2}
+              className="hidden sm:grid"
+            />
           </div>
         ))}
       </WallStack>
