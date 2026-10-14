@@ -70,7 +70,7 @@ export default function Questions() {
                 style={{
                   // eased in and out, so it leaves and lands without a jolt
                   transition:
-                    "transform 1400ms cubic-bezier(0.65, 0, 0.35, 1), opacity 1400ms cubic-bezier(0.65, 0, 0.35, 1)",
+                    "transform 1400ms cubic-bezier(0.65, 0, 0.35, 1), opacity 1400ms cubic-bezier(0.65, 0, 0.35, 1), background-color 1400ms ease, color 1400ms ease, box-shadow 1400ms ease",
                   willChange: "transform, opacity",
                   transform: `translate(-50%, -50%) translateX(calc(${rel} * var(--q-step))) scale(${
                     front ? 1 : near ? 0.86 : 0.74

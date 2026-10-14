@@ -11,6 +11,7 @@ import Marquee from "@/components/Marquee";
 import Mentor from "@/components/Mentor";
 import Navbar from "@/components/Navbar";
 import Questions from "@/components/Questions";
+import StickyCta from "@/components/StickyCta";
 import Walls from "@/components/Walls";
 import WhyAttend from "@/components/WhyAttend";
 
@@ -34,6 +35,9 @@ export default function Home() {
         <Faq />
       </main>
       <Footer />
+      {/* room for the sticky bar so it never covers the last line */}
+      <div aria-hidden className="h-[76px] bg-[#f3f4f6] lg:hidden" />
+      <StickyCta />
     </>
   );
 }
