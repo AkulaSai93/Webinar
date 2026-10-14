@@ -69,7 +69,7 @@ function Badge({
 
 export default function Mentor() {
   return (
-    <section id="mentor" className="scroll-mt-24 bg-[#f3f4f6] px-6 py-20">
+    <section id="mentor" className="scroll-mt-24 bg-[#f3f4f6] px-6 py-14 sm:py-20">
       <div className="mx-auto grid max-w-[1152px] items-center gap-12 lg:grid-cols-[0.85fr_1fr] lg:gap-16">
         {/* portrait */}
         <Reveal from="top">

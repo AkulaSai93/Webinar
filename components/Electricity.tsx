@@ -20,7 +20,7 @@ export default function Electricity() {
   return (
     <section
       id="curriculum"
-      className="scroll-mt-24 bg-[#f3f4f6] py-16 sm:py-20"
+      className="scroll-mt-24 bg-[#f3f4f6] py-14 sm:py-20"
     >
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">

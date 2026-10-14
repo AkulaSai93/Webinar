@@ -109,7 +109,7 @@ export default function Agenda() {
   }, []);
 
   return (
-    <section id="agenda" className="scroll-mt-24 bg-[#f3f4f6] px-6 pb-20 pt-20">
+    <section id="agenda" className="scroll-mt-24 bg-[#f3f4f6] px-6 pb-14 pt-14 sm:pb-20 sm:pt-20">
       <div className="mx-auto max-w-[1152px]">
         <div className="grid items-start lg:grid-cols-[300px_1fr]">
           {/* the pitch — pinned while the agenda scrolls past it */}

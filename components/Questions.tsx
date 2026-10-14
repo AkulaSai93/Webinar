@@ -31,7 +31,7 @@ export default function Questions() {
   }, [paused]);
 
   return (
-    <section id="questions" className="scroll-mt-24 overflow-hidden bg-[#f3f4f6] px-6 py-20">
+    <section id="questions" className="scroll-mt-24 overflow-hidden bg-[#f3f4f6] px-6 py-14 sm:py-20">
       <div className="mx-auto max-w-[1152px]">
         <div className="text-center">
           <span className="inline-flex items-center rounded-full border border-brand/25 bg-brand/8 px-4 py-2 text-sm text-ink/75">
@@ -45,7 +45,7 @@ export default function Questions() {
 
         {/* the questions come through the middle, one at a time */}
         <div
-          className="question-stage relative mt-14 h-[260px] sm:h-[280px]"
+          className="question-stage relative mt-10 h-[240px] sm:mt-14 sm:h-[280px]"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
@@ -116,7 +116,7 @@ export default function Questions() {
         </div>
 
         {/* which one you're on */}
-        <div className="mt-10 flex items-center justify-center gap-2">
+        <div className="mt-8 flex items-center justify-center gap-2 sm:mt-10">
           {QUESTIONS.map((q, i) => (
             <button
               key={q}
@@ -131,7 +131,7 @@ export default function Questions() {
           ))}
         </div>
 
-        <div className="mt-10 flex flex-col items-center justify-center gap-5 text-center sm:flex-row sm:gap-7">
+        <div className="mt-8 flex flex-col items-center justify-center gap-5 text-center sm:mt-10 sm:flex-row sm:gap-7">
           <p className="text-base text-ink/60">
             Got your own question? Bring it. Vishwa takes them live.
           </p>

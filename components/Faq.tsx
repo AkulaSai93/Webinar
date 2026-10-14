@@ -28,7 +28,7 @@ export default function Faq() {
   const [open, setOpen] = useState(0);
 
   return (
-    <section id="faq" className="scroll-mt-24 bg-[#f3f4f6] px-6 py-20">
+    <section id="faq" className="scroll-mt-24 bg-[#f3f4f6] px-6 py-14 sm:py-20">
       <div className="mx-auto grid max-w-[1152px] gap-10 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
         {/* the heading */}
         <div>

@@ -84,7 +84,7 @@ export default function WhyAttendStack({
   // Reduced motion: the three cards, no pin.
   if (still) {
     return (
-      <div className="mx-auto flex max-w-[720px] flex-col items-center gap-8 px-6 py-16">
+      <div className="mx-auto flex max-w-[720px] flex-col items-center gap-6 px-6 py-12 sm:gap-8 sm:py-16">
         {reasons.map((r) => (
           <Card key={r.n} r={r} />
         ))}

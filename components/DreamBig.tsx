@@ -25,7 +25,7 @@ function RocketIcon() {
 
 export default function DreamBig() {
   return (
-    <section id="who" className="scroll-mt-24 bg-[#f3f4f6] px-6 py-20">
+    <section id="who" className="scroll-mt-24 bg-[#f3f4f6] px-6 py-14 sm:py-20">
       <div className="mx-auto flex max-w-[921px] flex-col items-center gap-[60px]">
         {/* heading */}
         <Reveal from="top" className="flex flex-col items-center gap-3 text-center">

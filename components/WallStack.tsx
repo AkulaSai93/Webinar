@@ -107,7 +107,7 @@ export default function WallStack({
   if (still) {
     return (
       <BreakContext.Provider value={false}>
-        <div className="mx-auto w-full max-w-4xl px-6 py-24">
+        <div className="mx-auto w-full max-w-4xl px-6 py-14 sm:py-24">
           {header}
           <div className="mt-8 flex flex-col-reverse gap-3">
             {children.map((child, i) => (

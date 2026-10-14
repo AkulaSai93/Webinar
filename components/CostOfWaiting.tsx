@@ -179,7 +179,7 @@ function Chart() {
 
 export default function CostOfWaiting() {
   return (
-    <section id="cost" className="scroll-mt-24 bg-[#f3f4f6] px-6 py-20">
+    <section id="cost" className="scroll-mt-24 bg-[#f3f4f6] px-6 py-14 sm:py-20">
       <div className="mx-auto max-w-[1152px]">
         <Reveal from="top">
           <span className="inline-flex items-center rounded-full border border-brand/25 bg-brand/8 px-4 py-2 text-sm text-ink/75">

@@ -40,7 +40,7 @@ export default function Gap() {
       className="relative z-20 -mt-[38vh] scroll-mt-24 bg-transparent"
     >
       <RiseIn distance={320}>
-        <div className="w-full rounded-[32px] bg-[#1b1b1f] px-6 py-16 shadow-[0_-30px_80px_-50px_rgba(10,7,8,0.55)] sm:rounded-[40px] sm:px-10 sm:py-20">
+        <div className="w-full rounded-[32px] bg-[#1b1b1f] px-6 py-12 shadow-[0_-30px_80px_-50px_rgba(10,7,8,0.55)] sm:rounded-[40px] sm:px-10 sm:py-20">
           <div className="mx-auto max-w-[1072px]">
             {/* heading + supporting copy */}
             <Reveal from="top">
@@ -58,7 +58,7 @@ export default function Gap() {
             </Reveal>
 
             {/* the two sides */}
-            <div className="mt-12 grid gap-7 lg:grid-cols-2">
+            <div className="mt-9 grid gap-5 sm:mt-12 sm:gap-7 lg:grid-cols-2">
               <Reveal from="top" className="h-full">
                 <article className="flex h-full flex-col gap-5 rounded-[24px] bg-white p-8">
                   <span className="inline-flex w-fit items-center rounded-full bg-brand/10 px-3 py-1.5 text-xs font-semibold leading-4 text-brand">
@@ -109,7 +109,7 @@ export default function Gap() {
             </div>
 
             {/* big stat + closing copy + CTA */}
-            <Reveal from="top" className="pt-12">
+            <Reveal from="top" className="pt-9 sm:pt-12">
               <div className="flex flex-col items-start gap-6 lg:flex-row lg:items-center lg:gap-10">
                 <p className="flex shrink-0 items-end gap-2">
                   <span className="pb-1.5 text-sm leading-5 text-white/45">

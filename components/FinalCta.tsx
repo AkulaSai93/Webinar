@@ -44,7 +44,7 @@ export default function FinalCta() {
   return (
     <section
       id="final"
-      className="relative isolate scroll-mt-24 overflow-hidden bg-[#1b1b1f] px-6 py-14"
+      className="relative isolate scroll-mt-24 overflow-hidden bg-[#1b1b1f] px-6 py-12 sm:py-14"
     >
       {/* backdrop: a diagonal red sweep off the top-right, on near-black */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
