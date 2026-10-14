@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { ArrowRight } from "./icons";
 
@@ -18,6 +18,39 @@ const HOLD = 2600;
 export default function Questions() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
+  // how far the thumb has dragged the stack, in px, while a swipe is in flight
+  const [drag, setDrag] = useState(0);
+  const swipe = useRef<{ x: number; y: number; on: boolean } | null>(null);
+
+  const step = (dir: number) =>
+    setActive((i) => (i + dir + QUESTIONS.length) % QUESTIONS.length);
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    const t = e.touches[0];
+    swipe.current = { x: t.clientX, y: t.clientY, on: false };
+    setPaused(true);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    const s = swipe.current;
+    if (!s) return;
+    const t = e.touches[0];
+    const dx = t.clientX - s.x;
+
+    // let a vertical gesture scroll the page; only take over sideways ones
+    if (!s.on && Math.abs(dx) < Math.abs(t.clientY - s.y)) return;
+    s.on = true;
+    setDrag(dx);
+  };
+
+  const onTouchEnd = () => {
+    const s = swipe.current;
+    swipe.current = null;
+    setPaused(false);
+
+    if (s?.on && Math.abs(drag) > 45) step(drag < 0 ? 1 : -1);
+    setDrag(0);
+  };
 
   useEffect(() => {
     if (paused) return;
@@ -51,9 +84,13 @@ export default function Questions() {
 
         {/* the questions come through the middle, one at a time */}
         <div
-          className="question-stage relative mt-10 h-[240px] sm:mt-14 sm:h-[280px]"
+          className="question-stage relative mt-10 h-[240px] touch-pan-y select-none sm:mt-14 sm:h-[280px]"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+          onTouchCancel={onTouchEnd}
         >
           {QUESTIONS.map((q, i) => {
             // how far this card sits from the middle, wrapping both ways
@@ -72,16 +109,16 @@ export default function Questions() {
                 className={`absolute left-1/2 top-1/2 flex h-[220px] w-[280px] flex-col rounded-[28px] p-7 sm:h-[240px] sm:w-[320px] ${
                   front ? "" : "cursor-pointer"
                 } ${
-                  front
-                    ? "bg-brand text-white shadow-[0_28px_60px_-28px_rgba(231,0,11,0.55)]"
-                    : "bg-white text-ink shadow-[0_18px_40px_-28px_rgba(10,7,8,0.4)]"
+                  front ? "bg-brand text-white" : "bg-white text-ink"
                 }`}
                 style={{
-                  // eased in and out, so it leaves and lands without a jolt
-                  transition:
-                    "transform 650ms cubic-bezier(0.65, 0, 0.35, 1), opacity 650ms cubic-bezier(0.65, 0, 0.35, 1), background-color 650ms ease, color 650ms ease, box-shadow 650ms ease",
+                  // eased in and out, so it leaves and lands without a jolt;
+                  // a finger on the stack moves it directly instead
+                  transition: drag
+                    ? "none"
+                    : "transform 650ms cubic-bezier(0.65, 0, 0.35, 1), opacity 650ms cubic-bezier(0.65, 0, 0.35, 1), background-color 650ms ease, color 650ms ease",
                   willChange: "transform, opacity",
-                  transform: `translate(-50%, -50%) translateX(calc(${rel} * var(--q-step))) scale(${
+                  transform: `translate(-50%, -50%) translateX(calc(${rel} * var(--q-step) + ${drag}px)) scale(${
                     front ? 1 : near ? 0.86 : 0.74
                   }) rotate(${front ? 0 : rel * 1.5}deg)`,
                   opacity: front ? 1 : near ? 0.5 : 0,
