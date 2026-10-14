@@ -118,7 +118,7 @@ export default function Agenda() {
             {/* the strip's tint curves in around this block */}
             <span aria-hidden className="concave-tr" />
             <span aria-hidden className="concave-br" />
-            <span className="inline-flex items-center rounded-full border border-brand/25 bg-brand/8 px-3.5 py-1.5 text-xs text-ink/75">
+            <span className="inline-flex items-center rounded-full border border-brand/35 bg-brand/10 px-3.5 py-1.5 text-xs font-bold text-ink">
               What we&apos;ll discuss
             </span>
 

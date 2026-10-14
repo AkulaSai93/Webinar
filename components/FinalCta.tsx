@@ -77,7 +77,7 @@ export default function FinalCta() {
       <div className="mx-auto grid max-w-[1152px] items-center gap-12 lg:grid-cols-[1fr_380px] lg:gap-16">
         {/* the last word */}
         <Reveal from="top">
-          <span className="inline-flex items-center rounded-full border border-brand/25 bg-brand/8 px-4 py-2 text-xs font-semibold tracking-[0.08em] text-white/75">
+          <span className="inline-flex items-center rounded-full border border-brand/35 bg-brand/10 px-4 py-2 text-xs font-bold tracking-[0.08em] text-white/75">
             YOUR MOVE
           </span>
 

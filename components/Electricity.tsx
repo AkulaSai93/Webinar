@@ -26,7 +26,7 @@ export default function Electricity() {
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
           {/* left — the claim */}
           <Reveal from="top">
-            <span className="inline-flex items-center rounded-full border border-brand/25 bg-brand/8 px-4 py-2 text-sm text-ink/75">
+            <span className="inline-flex items-center rounded-full border border-brand/35 bg-brand/10 px-4 py-2 text-sm font-bold text-ink">
               Why this can&apos;t wait
             </span>
 

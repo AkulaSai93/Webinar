@@ -23,12 +23,12 @@ export default function Home() {
         <Hero />
         <Marquee />
         <DreamBig />
+        <Mentor />
         <Walls />
         <Gap />
         <Electricity />
         <CostOfWaiting />
         <WhyAttend />
-        <Mentor />
         <Agenda />
         <Questions />
         <FinalCta />

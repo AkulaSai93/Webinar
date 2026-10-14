@@ -34,7 +34,7 @@ export default function Questions() {
     <section id="questions" className="scroll-mt-24 overflow-hidden bg-[#f3f4f6] px-6 py-14 sm:py-20">
       <div className="mx-auto max-w-[1152px]">
         <div className="text-center">
-          <span className="inline-flex items-center rounded-full border border-brand/25 bg-brand/8 px-4 py-2 text-sm text-ink/75">
+          <span className="inline-flex items-center rounded-full border border-brand/35 bg-brand/10 px-4 py-2 text-sm font-bold text-ink">
             What you&apos;ll walk away with
           </span>
 

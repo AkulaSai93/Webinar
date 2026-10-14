@@ -101,7 +101,7 @@ export default function Walls() {
       <WallStack
         header={
           <div className="mx-auto flex max-w-[768px] flex-col items-center text-center">
-            <span className="inline-flex items-center rounded-full border border-brand/25 bg-brand/8 px-3.5 py-1.5 text-[10px] font-bold leading-[15px] tracking-[1.6px] text-ink/70">
+            <span className="inline-flex items-center rounded-full border border-brand/35 bg-brand/10 px-3.5 py-1.5 text-[10px] font-bold leading-[15px] tracking-[1.6px] text-ink">
               WHY MOST NEVER MAKE IT
             </span>
 

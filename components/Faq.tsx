@@ -32,7 +32,7 @@ export default function Faq() {
       <div className="mx-auto grid max-w-[1152px] gap-10 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
         {/* the heading */}
         <div>
-          <span className="inline-flex items-center rounded-full border border-brand/25 bg-brand/8 px-4 py-2 text-xs font-semibold tracking-[0.08em] text-ink/75">
+          <span className="inline-flex items-center rounded-full border border-brand/35 bg-brand/10 px-4 py-2 text-xs font-bold tracking-[0.08em] text-ink">
             QUICK ANSWERS
           </span>
 
