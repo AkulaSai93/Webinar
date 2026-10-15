@@ -7,7 +7,7 @@ import { ArrowRight } from "./icons";
 const REASONS: Reason[] = [
   {
     n: "01",
-    title: "A clear 2-year roadmap",
+    title: "Get A clear 2-year roadmap",
     body: "Know exactly what to do in Year 1, and what to do in Year 2.",
     from: "#f6e7e8",
     to: "#fcfbfb",
@@ -15,7 +15,7 @@ const REASONS: Reason[] = [
   },
   {
     n: "02",
-    title: "The right skills, in the right order",
+    title: "Develop The right skills, in the right order",
     body: "No more random tutorials. Focus only on what companies test.",
     from: "#e6f2ed",
     to: "#f6fbf8",
@@ -23,7 +23,7 @@ const REASONS: Reason[] = [
   },
   {
     n: "03",
-    title: "Straight from the industry",
+    title: "Learn Straight from the industry Expert",
     body: "From someone who has cracked top tech companies himself.",
     from: "#cad9f7",
     to: "#f0f7fe",
@@ -37,7 +37,7 @@ export default function WhyAttend() {
       <div className="mx-auto max-w-[1152px] px-6 pt-14 text-center">
         <Reveal from="top">
           <span className="inline-flex items-center rounded-full border border-brand/35 bg-brand/10 px-4 py-2 text-sm font-bold text-ink">
-            Why attend
+            Why you should attend
           </span>
         </Reveal>
       </div>

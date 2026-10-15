@@ -33,7 +33,7 @@ export default function Faq() {
         {/* the heading */}
         <div>
           <span className="inline-flex items-center rounded-full border border-brand/35 bg-brand/10 px-4 py-2 text-sm font-bold text-ink">
-            QUICK ANSWERS
+            Quick answers
           </span>
 
           <h2 className="mt-6 font-display text-[32px] font-normal leading-[1.1] tracking-[-1px] text-ink sm:text-[40px]">

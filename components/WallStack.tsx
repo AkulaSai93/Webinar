@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
-/** The whole build → crack → break sequence, in ms. */
-const DURATION = 4200;
+/** How far the page scrolls while the wall builds, cracks and breaks. */
+const TRACK = "h-[260vh] sm:h-[340vh]";
 
 /** The fracture, in percentages of the stage, so it scales with the wall. */
 const CRACKS: { d: string; thin?: boolean }[] = [
@@ -53,12 +53,14 @@ export default function WallStack({
   payoff: React.ReactNode;
   children: React.ReactNode[];
 }) {
+  const wrapRef = useRef<HTMLDivElement>(null);
   const rootRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const rowsRef = useRef<HTMLDivElement>(null);
   const crackRef = useRef<SVGSVGElement>(null);
   const flashRef = useRef<HTMLDivElement>(null);
   const punchRef = useRef<HTMLDivElement>(null);
+  const [still, setStill] = useState(false);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -162,62 +164,48 @@ export default function WallStack({
     };
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setStill(true);
       layout();
       render(1);
       return;
     }
 
-    let running = false;
+    // the sequence is driven by the scrollbar: how far the pinned track has
+    // travelled is the only clock
     let frame = 0;
 
-    const play = () => {
-      if (running) return;
-      layout();
-      running = true;
-      let start: number | null = null;
+    const update = () => {
+      frame = 0;
+      const wrap = wrapRef.current;
+      if (!wrap) return;
+      const { top, height } = wrap.getBoundingClientRect();
+      const travel = height - window.innerHeight;
+      render(travel <= 0 ? 0 : clamp(-top / travel));
+    };
 
-      const step = (ts: number) => {
-        if (start === null) start = ts;
-        const p = clamp((ts - start) / DURATION);
-        render(p);
-        if (p < 1) frame = requestAnimationFrame(step);
-        else running = false;
-      };
-
-      frame = requestAnimationFrame(step);
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
     };
 
     layout();
-    render(0);
+    update();
 
-    // it replays every time the wall comes back into view
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting && e.intersectionRatio > 0.45) play();
-          else if (!e.isIntersecting && !running) {
-            layout();
-            render(0);
-          }
-        });
-      },
-      { threshold: [0, 0.45] },
-    );
-    io.observe(root);
+    window.addEventListener("scroll", onScroll, { passive: true });
 
     const onResize = () => {
-      if (!running) layout();
+      layout();
+      update();
     };
     window.addEventListener("resize", onResize);
 
     return () => {
-      io.disconnect();
-      window.removeEventListener("resize", onResize);
       if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
     };
   }, []);
 
-  return (
+  const inner = (
     <div
       ref={rootRef}
       className="mx-auto w-full max-w-4xl overflow-hidden px-6 py-14 sm:py-20"
@@ -271,6 +259,17 @@ export default function WallStack({
         >
           {payoff}
         </div>
+      </div>
+    </div>
+  );
+
+  // reduced motion: the finished state, in the normal flow, no pinning
+  if (still) return inner;
+
+  return (
+    <div ref={wrapRef} className={`relative ${TRACK}`}>
+      <div className="sticky top-0 flex h-screen items-center overflow-hidden">
+        {inner}
       </div>
     </div>
   );

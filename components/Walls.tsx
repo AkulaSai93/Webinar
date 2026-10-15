@@ -161,7 +161,7 @@ export default function Walls() {
         header={
           <div className="mx-auto flex max-w-[768px] flex-col items-center text-center">
             <span className="inline-flex items-center rounded-full border border-brand/35 bg-brand/10 px-4 py-2 text-sm font-bold text-ink">
-              WHY MOST NEVER MAKE IT
+              Why most never make it
             </span>
 
             <h2 className="mt-4 text-[26px] font-bold leading-[1.15] tracking-[-0.9px] text-ink sm:text-[36px] sm:leading-[41.4px]">
@@ -177,18 +177,19 @@ export default function Walls() {
         }
         payoff={
           /* Figma: Webinar / Hero 21:1234 */
-          <div className="flex w-full max-w-[483px] flex-col items-center gap-5">
-            <p className="text-center font-display text-[28px] font-medium leading-normal text-black">
+          <div className="flex w-full max-w-[760px] flex-col items-center gap-5">
+            <p className="text-center font-display text-[22px] font-medium leading-normal text-black sm:text-[28px]">
               This session is how you{" "}
-              <span className="text-brand">break those walls</span> in a single
-              evening.
+              <span className="text-brand">break those walls</span>.
+              <br />
+              Break Through
             </p>
 
             <a
               href="#register"
               className="group inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-dark"
             >
-              Break through. Register now
+              Register now
               <ArrowUpRight />
             </a>
           </div>

@@ -46,11 +46,13 @@ export default function FinalCta() {
         {/* the last word */}
         <Reveal from="top">
           <span className="inline-flex items-center rounded-full border border-brand/35 bg-brand/10 px-4 py-2 text-sm font-bold text-white">
-            YOUR MOVE
+            Your move
           </span>
 
           <h2 className="mt-5 font-display text-[32px] font-medium leading-[1.1] tracking-[-1px] text-white sm:text-[40px]">
-            Your Year 1 starts <span className="text-brand">now.</span>
+            Beyond The Degree &mdash;{" "}
+            <span className="text-brand">The Only Tech Career Road Map</span>{" "}
+            You need
           </h2>
 
           <p className="mt-4 max-w-xl text-base leading-[26px] text-white/60">

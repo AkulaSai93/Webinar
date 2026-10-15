@@ -13,7 +13,7 @@ const QUESTIONS = [
   "How do I get noticed by top companies before I graduate?",
 ];
 
-const HOLD = 2600;
+const HOLD = 1700;
 
 export default function Questions() {
   const [active, setActive] = useState(0);
@@ -111,7 +111,7 @@ export default function Questions() {
                   // a finger on the stack moves it directly instead
                   transition: drag
                     ? "none"
-                    : "transform 650ms cubic-bezier(0.65, 0, 0.35, 1), opacity 650ms cubic-bezier(0.65, 0, 0.35, 1), background-color 650ms ease, color 650ms ease",
+                    : "transform 420ms cubic-bezier(0.65, 0, 0.35, 1), opacity 420ms cubic-bezier(0.65, 0, 0.35, 1), background-color 420ms ease, color 420ms ease",
                   willChange: "transform, opacity",
                   transform: `translate(-50%, -50%) translateX(calc(${rel} * var(--q-step) + ${drag}px)) scale(${
                     front ? 1 : near ? 0.86 : 0.74

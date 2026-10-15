@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 export type Reason = {
   n: string;
   title: string;
+  titleClass?: string;
   body: string;
   /** card face: gradient runs to the left, from → to */
   from: string;
@@ -61,7 +62,7 @@ export default function WhyAttendStack({
 
   const Card = ({ r, style }: { r: Reason; style?: React.CSSProperties }) => (
     <article
-      className="flex h-[340px] w-full flex-col overflow-hidden rounded-[36px] border-[3px] border-white px-7 py-6 font-geist shadow-[0px_4px_8px_0px_rgba(8,7,49,0.06),0px_14px_14px_0px_rgba(8,7,49,0.05)] sm:h-[280px] sm:rounded-[48px] sm:border-4 sm:px-9 sm:py-7"
+      className="flex h-[340px] w-full flex-col overflow-hidden rounded-[36px] border-[3px] border-white px-7 py-6 font-geist shadow-[0px_4px_8px_0px_rgba(8,7,49,0.06),0px_14px_14px_0px_rgba(8,7,49,0.05)] sm:h-[320px] sm:rounded-[48px] sm:border-4 sm:px-9 sm:py-7"
       style={{
         backgroundImage: `linear-gradient(to left, ${r.from}, ${r.to})`,
         ...style,
@@ -71,7 +72,11 @@ export default function WhyAttendStack({
         {r.n}
       </p>
 
-      <h3 className="mt-3 text-[28px] font-normal leading-[1.15] tracking-[-0.8px] text-[#121214] sm:text-[42px] sm:leading-[48px] sm:tracking-[-1.2px]">
+      <h3
+        className={`-mt-1 font-normal leading-[1.15] tracking-[-0.8px] text-[#121214] sm:tracking-[-1.2px] ${
+          r.titleClass ?? "text-[28px] sm:text-[42px] sm:leading-[48px]"
+        }`}
+      >
         {r.title}
       </h3>
 

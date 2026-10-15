@@ -1,7 +1,7 @@
 /* Figma: Webinar 68:25915 */
 
 const ITEMS = [
-  "Courses eligible for B.Tech, BE, BCA, B.Sc",
+  "Courses eligible for B.Tech, BE, BCA, B.Sc Students",
   "Any college, any tier",
   "No coding knowledge required",
   "Made for 1st & 2nd year students",
