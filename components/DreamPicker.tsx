@@ -198,39 +198,45 @@ function LockedStep({ n, phase, i }: { n: number; phase: string; i: number }) {
   );
 }
 
-/** the puff of sprinkles the roadmap arrives in */
+/** the sprinkles the roadmap arrives in, scattered across the whole section */
 function Sparkles({ seed }: { seed: number }) {
-  const bits = Array.from({ length: 44 }, (_, i) => {
+  const bits = Array.from({ length: 70 }, (_, i) => {
     // a cheap, stable pseudo-random so the burst differs each reveal
     const r = (k: number) => {
       const x = Math.sin(seed * 97.13 + i * 31.7 + k * 12.9) * 43758.5453;
       return x - Math.floor(x);
     };
-    const angle = (i / 44) * Math.PI * 2 + r(1) * 0.7;
-    const reach = 110 + r(2) * 260;
+    // every bit starts somewhere of its own and drifts outward from there
+    const left = 2 + r(0) * 96;
+    const top = 2 + r(1) * 96;
+    const angle = r(2) * Math.PI * 2;
+    const reach = 50 + r(3) * 150;
     return {
-      left: `${12 + r(3) * 76}%`,
-      dx: `${Math.cos(angle) * reach * 0.5}px`,
-      dy: `${Math.sin(angle) * reach * 0.42 - 40}px`,
+      left: `${left}%`,
+      top: `${top}%`,
+      dx: `${Math.cos(angle) * reach}px`,
+      dy: `${Math.sin(angle) * reach}px`,
       s: 0.5 + r(4) * 0.9,
       rot: `${(r(5) - 0.5) * 420}deg`,
-      dur: `${780 + r(6) * 620}ms`,
-      delay: `${r(7) * 260}ms`,
+      dur: `${820 + r(6) * 760}ms`,
+      // bits nearer the middle go first, so the burst reads as spreading out
+      delay: `${Math.abs(left - 50) * 4 + r(7) * 300}ms`,
       red: r(8) > 0.42,
-      size: 5 + Math.round(r(9) * 7),
+      size: 4 + Math.round(r(9) * 7),
       star: r(10) > 0.55,
     };
   });
 
   return (
-    <span aria-hidden className="pointer-events-none absolute inset-x-0 top-0 z-10 block h-0">
+    <span aria-hidden className="pointer-events-none absolute inset-0 z-10 block">
       {bits.map((b, i) => (
         <span
           key={i}
-          className="road-spark absolute top-0 block"
+          className="road-spark absolute block"
           style={
             {
               left: b.left,
+              top: b.top,
               width: b.star ? b.size * 2 : b.size,
               height: b.star ? b.size * 2 : b.size,
               borderRadius: b.star ? 0 : b.size > 8 ? 2 : 999,
@@ -259,13 +265,14 @@ export default function DreamPicker() {
   // the roadmap only exists once it has been asked for; the key replays the
   // reveal whenever a pick changes afterwards
   const [reveal, setReveal] = useState(0);
-  // odd numbers mean "showing"; a pick bumps it to the next even number, which
-  // puts the button back and guarantees the next burst is a fresh one
-  const shown = reveal % 2 === 1;
+  const shown = reveal > 0;
 
   return (
-    <>
-      <p className="text-base text-ink/55">
+    <div className="relative">
+      {/* the burst covers everything: hint, sentence and roadmap alike */}
+      {shown && <Sparkles key={`spark-${reveal}`} seed={reveal} />}
+
+      <p className="relative z-[11] text-base text-ink/55">
         <HandIcon />
         Tap the red words to make this sentence yours.
       </p>
@@ -279,7 +286,7 @@ export default function DreamPicker() {
           options={YEARS}
           onPick={(v) => {
             setYear(v);
-            setReveal((r) => (r % 2 === 1 ? r + 1 : r));
+            setReveal((r) => (r ? r + 1 : 0));
           }}
         />{" "}
         of{" "}
@@ -289,7 +296,7 @@ export default function DreamPicker() {
           options={BRANCHES}
           onPick={(v) => {
             setBranch(v);
-            setReveal((r) => (r % 2 === 1 ? r + 1 : r));
+            setReveal((r) => (r ? r + 1 : 0));
           }}
         />
         <span className="ml-[0.1em]">, and I want to</span>{" "}
@@ -299,7 +306,7 @@ export default function DreamPicker() {
           options={DREAMS.map((d) => d.v)}
           onPick={(v) => {
             setDream(DREAMS.find((d) => d.v === v) ?? DREAMS[0]);
-            setReveal((r) => (r % 2 === 1 ? r + 1 : r));
+            setReveal((r) => (r ? r + 1 : 0));
           }}
           wide
         />
@@ -316,10 +323,9 @@ export default function DreamPicker() {
         </button>
       )}
 
+      {/* the burst throws things wide; clip sideways so the page never scrolls */}
       {shown && (
         <div key={reveal} className="relative">
-          <Sparkles seed={reveal} />
-
           {/* the shockwave the card arrives on */}
           <span
             aria-hidden
@@ -417,6 +423,6 @@ export default function DreamPicker() {
         </div>
         </div>
       )}
-    </>
+    </div>
   );
 }

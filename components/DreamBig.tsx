@@ -5,7 +5,7 @@ import Reveal from "./Reveal";
 
 export default function DreamBig() {
   return (
-    <section id="who" className="scroll-mt-24 bg-[#f3f4f6] px-6 pb-8 pt-14 sm:pb-10 sm:pt-20">
+    <section id="who" className="scroll-mt-24 overflow-x-clip bg-[#f3f4f6] px-6 pb-8 pt-14 sm:pb-10 sm:pt-20">
       <div className="mx-auto flex max-w-[1152px] flex-col items-center gap-5 sm:gap-7">
         {/* heading */}
         <Reveal from="top" className="flex flex-col items-center gap-3 text-center">
