@@ -252,3 +252,245 @@ html {
     --q-step: 330px;
   }
 }
+
+/* --- the roadmap, conjured ---------------------------------------------- */
+
+/* the card lands: blurred and low, then sharp and settled */
+@keyframes road-land {
+  from {
+    opacity: 0;
+    transform: translateY(26px) scale(0.97);
+    filter: blur(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+/* each stop on the path arrives after the one before it */
+@keyframes road-step {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+/* the rail draws itself from the first node outward */
+@keyframes road-rail {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* a sprinkle: thrown outward, spun, then gone */
+@keyframes road-spark {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.2) rotate(0deg);
+  }
+  18% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(var(--s))
+      rotate(var(--rot));
+  }
+}
+
+.road-land {
+  animation: road-land 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.road-step {
+  animation: road-step 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(260ms + var(--i) * 90ms);
+}
+
+.road-rail {
+  animation: road-rail 900ms cubic-bezier(0.65, 0, 0.35, 1) 220ms both;
+}
+
+.road-spark {
+  animation: road-spark var(--dur) cubic-bezier(0.2, 0.7, 0.3, 1) var(--delay) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .road-land,
+  .road-step,
+  .road-rail,
+  .road-spark {
+    animation: none;
+  }
+  .road-spark {
+    display: none;
+  }
+}
+
+/* --- the conjuring, part two -------------------------------------------- */
+
+/* a shockwave ring thrown off the moment the card appears */
+@keyframes road-shock {
+  from {
+    opacity: 0.55;
+    transform: translate(-50%, -50%) scale(0.2);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.9);
+  }
+}
+
+/* light sweeping across the card, like a hand passing over it */
+@keyframes road-sweep {
+  from {
+    transform: translateX(-130%) skewX(-18deg);
+  }
+  to {
+    transform: translateX(130%) skewX(-18deg);
+  }
+}
+
+/* a spark running the length of the rail, laying it down as it goes */
+@keyframes road-comet {
+  from {
+    left: 0%;
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  to {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+/* each node lands with a bounce */
+@keyframes road-node {
+  0% {
+    opacity: 0;
+    transform: scale(0.1) rotate(-120deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.22) rotate(8deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* the ring that pulses out of a node once it has landed */
+@keyframes road-ping {
+  from {
+    opacity: 0.5;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 0;
+    transform: scale(2.6);
+  }
+}
+
+/* sprinkles twinkle on their way out instead of just fading */
+@keyframes road-twinkle {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0) rotate(0deg);
+  }
+  15% {
+    opacity: 1;
+    transform: translate(calc(-50% + var(--dx) * 0.2), calc(-50% + var(--dy) * 0.2))
+      scale(calc(var(--s) * 1.25)) rotate(calc(var(--rot) * 0.2));
+  }
+  55% {
+    opacity: 1;
+    transform: translate(calc(-50% + var(--dx) * 0.7), calc(-50% + var(--dy) * 0.7))
+      scale(calc(var(--s) * 0.55)) rotate(calc(var(--rot) * 0.6));
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy) + 46px))
+      scale(0) rotate(var(--rot));
+  }
+}
+
+/* the locked cards shimmer, hinting there is something under them */
+@keyframes road-shimmer {
+  from {
+    background-position: -220% 0;
+  }
+  to {
+    background-position: 220% 0;
+  }
+}
+
+.road-shock {
+  animation: road-shock 820ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.road-sweep {
+  animation: road-sweep 1100ms cubic-bezier(0.4, 0, 0.2, 1) 160ms both;
+}
+
+.road-comet {
+  animation: road-comet 980ms cubic-bezier(0.5, 0, 0.3, 1) 220ms both;
+}
+
+.road-node {
+  animation: road-node 620ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation-delay: calc(300ms + var(--i) * 90ms);
+}
+
+.road-ping {
+  animation: road-ping 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(420ms + var(--i) * 90ms);
+}
+
+.road-spark {
+  animation: road-twinkle var(--dur) cubic-bezier(0.2, 0.7, 0.3, 1) var(--delay) both;
+}
+
+.road-shimmer {
+  background-image: linear-gradient(
+    100deg,
+    transparent 38%,
+    rgba(231, 0, 11, 0.09) 50%,
+    transparent 62%
+  );
+  background-size: 220% 100%;
+  animation: road-shimmer 1500ms ease-out 700ms 1 both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .road-shock,
+  .road-sweep,
+  .road-comet,
+  .road-node,
+  .road-ping,
+  .road-shimmer {
+    animation: none;
+  }
+  .road-shock,
+  .road-sweep,
+  .road-comet,
+  .road-ping {
+    display: none;
+  }
+}
