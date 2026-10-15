@@ -61,7 +61,7 @@ export default function Navbar() {
         {/* desktop cta */}
         <a
           href="#register"
-          className="hidden shrink-0 items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand lg:inline-flex"
+          className="hidden shrink-0 items-center gap-2 rounded-[8px] bg-ink px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand lg:inline-flex"
         >
           Register now
           <ArrowUpRight className="size-3.5" />
@@ -74,7 +74,7 @@ export default function Navbar() {
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? "Close menu" : "Open menu"}
-          className="flex h-10 w-10 items-center justify-center rounded-lg border border-ink/12 text-ink lg:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-[8px] border border-ink/12 text-ink lg:hidden"
         >
           <span className="relative block h-3.5 w-5">
             <span
@@ -108,7 +108,7 @@ export default function Navbar() {
                 <a
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="block rounded-lg px-2 py-2.5 text-sm font-medium text-ink/75 transition hover:bg-ink/5 hover:text-ink"
+                  className="block rounded-[8px] px-2 py-2.5 text-sm font-medium text-ink/75 transition hover:bg-ink/5 hover:text-ink"
                 >
                   {link.label}
                 </a>
@@ -118,7 +118,7 @@ export default function Navbar() {
           <a
             href="#register"
             onClick={() => setOpen(false)}
-            className="mt-4 flex items-center justify-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand"
+            className="mt-4 flex items-center justify-center gap-2 rounded-[8px] bg-ink px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand"
           >
             Register now
             <ArrowUpRight className="size-3.5" />

@@ -16,7 +16,7 @@ export default function StickyCta() {
 
         <a
           href="#register"
-          className="ml-auto inline-flex shrink-0 items-center gap-2 rounded-full bg-brand px-5 py-3 text-sm font-bold text-white transition active:bg-brand-dark"
+          className="ml-auto inline-flex shrink-0 items-center gap-2 rounded-[8px] bg-brand px-5 py-3 text-sm font-bold text-white transition active:bg-brand-dark"
         >
           Register now
           <ArrowRight className="size-4" />

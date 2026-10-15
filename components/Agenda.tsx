@@ -80,7 +80,7 @@ const TOPICS: Topic[] = [
 /** The sneak peek: what this topic gives away, and what it holds back. */
 function Peek({ topic, className = "" }: { topic: Topic; className?: string }) {
   return (
-    <div className={`rounded-[28px] bg-[#1b1b1f] p-6 sm:p-8 ${className}`}>
+    <div className={`rounded-[8px] bg-[#1b1b1f] p-6 sm:p-8 ${className}`}>
           <span className="font-mono text-xs text-brand">{topic.n}</span>
 
           <h3 className="mt-2 font-display text-xl font-medium leading-snug tracking-tight text-white sm:text-2xl">
@@ -99,7 +99,7 @@ function Peek({ topic, className = "" }: { topic: Topic; className?: string }) {
           {/* everything past this point happens live — the teaser is
               blurred with a text shadow rather than filter: blur, which
               would push it onto its own layer and cut the panel's corners */}
-          <div className="relative mt-6 overflow-hidden rounded-2xl bg-white/[0.04] p-6">
+          <div className="relative mt-6 overflow-hidden rounded-[8px] bg-white/[0.04] p-6">
             <p
               aria-hidden
               className="select-none text-sm leading-6 text-transparent"
@@ -115,7 +115,7 @@ function Peek({ topic, className = "" }: { topic: Topic; className?: string }) {
 
               <a
                 href="#register"
-                className="group inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-full bg-brand px-4 py-3 text-[13px] font-bold text-white transition hover:bg-brand-dark sm:px-5 sm:text-sm"
+                className="group inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-[8px] bg-brand px-4 py-3 text-[13px] font-bold text-white transition hover:bg-brand-dark sm:px-5 sm:text-sm"
               >
                 Hear it live. Register now
                 <ArrowRight className="size-4 transition group-hover:translate-x-1" />
@@ -159,7 +159,7 @@ export default function Agenda() {
     <section id="agenda" className="scroll-mt-24 bg-[#f3f4f6] px-6 pb-14 pt-14 sm:pb-20 sm:pt-20">
       <div className="mx-auto max-w-[1152px]">
         <div className="text-center">
-          <span className="inline-flex items-center rounded-full border border-brand/35 bg-brand/10 px-4 py-2 text-sm font-bold text-ink">
+          <span className="inline-flex items-center rounded-[8px] border border-brand/35 bg-brand/10 px-4 py-2 text-sm font-bold text-ink">
             What we&apos;ll discuss
           </span>
 
@@ -211,7 +211,7 @@ export default function Agenda() {
                     </span>
 
                     <span
-                      className={`flex-1 rounded-2xl px-4 py-3 transition-all duration-300 sm:px-5 ${
+                      className={`flex-1 rounded-[8px] px-4 py-3 transition-all duration-300 sm:px-5 ${
                         on
                           ? "bg-white shadow-[0_18px_40px_-28px_rgba(10,7,8,0.55)]"
                           : "group-hover:bg-white/60"

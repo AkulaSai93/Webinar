@@ -104,7 +104,7 @@ export default function Countdown({
             <div className="text-center">
               <div
                 className={`flex items-center justify-center font-bold tabular-nums text-white ${
-                  sm ? "h-10 w-10 rounded-lg text-[15px]" : "h-14 w-14 rounded-xl text-xl"
+                  sm ? "h-10 w-10 rounded-[8px] text-[15px]" : "h-14 w-14 rounded-[8px] text-xl"
                 } ${
                   onDark
                     ? "border border-white/15 bg-white/10 backdrop-blur-sm"

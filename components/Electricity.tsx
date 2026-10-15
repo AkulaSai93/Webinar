@@ -26,7 +26,7 @@ export default function Electricity() {
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
           {/* left — the claim */}
           <Reveal from="top">
-            <span className="inline-flex items-center rounded-full border border-brand/35 bg-brand/10 px-4 py-2 text-sm font-bold text-ink">
+            <span className="inline-flex items-center rounded-[8px] border border-brand/35 bg-brand/10 px-4 py-2 text-sm font-bold text-ink">
               Why this can&apos;t wait
             </span>
 
@@ -47,7 +47,7 @@ export default function Electricity() {
             {SPLIT.map(({ stat, title, body, highlight }, i) => (
               <Reveal key={title} from="top" delay={i * 140}>
                 <article
-                  className={`flex items-center gap-6 rounded-2xl border p-5 sm:p-6 ${
+                  className={`flex items-center gap-6 rounded-[8px] border p-5 sm:p-6 ${
                     highlight
                       ? "border-brand bg-brand/5"
                       : "border-ink/10 bg-white"
@@ -84,7 +84,7 @@ export default function Electricity() {
 
             <a
               href="#register"
-              className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-dark"
+              className="group inline-flex shrink-0 items-center gap-2 rounded-[8px] bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-dark"
             >
               Be the 2%. Register now
               <ArrowRight className="size-4 transition group-hover:translate-x-1" />

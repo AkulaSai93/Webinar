@@ -22,7 +22,7 @@ export default function Hero() {
       <div className="mx-auto flex min-h-[560px] sm:min-h-[745px] max-w-[1152px] flex-col items-center justify-center gap-8 px-6 py-10 sm:gap-12 sm:py-16 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
         {/* left — the pitch */}
         <div className="w-full lg:max-w-[620px]">
-          <span className="inline-flex items-center gap-2.5 rounded-full border border-white/15 px-4 py-2 text-[11px] font-bold leading-[16.5px] tracking-[1.98px] text-white/75">
+          <span className="inline-flex items-center gap-2.5 rounded-[8px] border border-white/15 px-4 py-2 text-[11px] font-bold leading-[16.5px] tracking-[1.98px] text-white/75">
             <span className="size-1.5 rounded-full bg-brand" />
             FREE LIVE ONLINE WEBINAR
           </span>

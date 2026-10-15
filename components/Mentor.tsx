@@ -58,9 +58,9 @@ function Badge({
 }) {
   return (
     <span
-      className={`inline-flex items-center gap-2.5 rounded-2xl bg-ink/95 px-4 py-3 text-sm font-medium text-white shadow-xl shadow-ink/25 backdrop-blur ${className}`}
+      className={`inline-flex items-center gap-2.5 rounded-[8px] bg-ink/95 px-4 py-3 text-sm font-medium text-white shadow-xl shadow-ink/25 backdrop-blur ${className}`}
     >
-      <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-white/10 text-amber-300">
+      <span className="flex size-7 shrink-0 items-center justify-center rounded-[8px] bg-white/10 text-amber-300">
         {icon}
       </span>
       {children}
@@ -75,7 +75,7 @@ export default function Mentor() {
         {/* portrait */}
         <Reveal from="top">
           <div className="relative">
-            <div className="overflow-hidden rounded-[28px] shadow-[0_40px_90px_-45px_rgba(10,7,8,0.7)]">
+            <div className="overflow-hidden rounded-[8px] shadow-[0_40px_90px_-45px_rgba(10,7,8,0.7)]">
               <Image
                 src="/mentor.png"
                 alt="Vishwa Mohan, Founder and CEO of upGrad School of Technology"
@@ -99,7 +99,7 @@ export default function Mentor() {
         {/* the case for him */}
         <div>
           <Reveal from="top">
-            <span className="inline-flex items-center rounded-full border border-brand/35 bg-brand/10 px-4 py-2 text-sm font-bold text-ink">
+            <span className="inline-flex items-center rounded-[8px] border border-brand/35 bg-brand/10 px-4 py-2 text-sm font-bold text-ink">
               Who&apos;s taking it
             </span>
 
@@ -123,7 +123,7 @@ export default function Mentor() {
           <div className="mt-8 grid gap-3 sm:grid-cols-3">
             {STATS.map(({ value, label }, i) => (
               <Reveal key={label} from="top" delay={i * 110}>
-                <div className="flex h-full flex-col justify-center rounded-2xl bg-white p-5">
+                <div className="flex h-full flex-col justify-center rounded-[8px] bg-white p-5">
                   <p className="text-sm text-ink/55">{label}</p>
                   <p className="mt-1 font-display text-base font-bold tracking-tight text-ink">
                     {value}
@@ -148,7 +148,7 @@ export default function Mentor() {
 
             <a
               href="#register"
-              className="group mt-9 inline-flex items-center gap-2.5 rounded-full bg-brand px-7 py-4 text-base font-bold text-white shadow-lg shadow-brand/25 transition hover:bg-brand-dark"
+              className="group mt-9 inline-flex items-center gap-2.5 rounded-[8px] bg-brand px-7 py-4 text-base font-bold text-white shadow-lg shadow-brand/25 transition hover:bg-brand-dark"
             >
               Learn from Vishwa. Register now
               <ArrowRight className="size-4 transition group-hover:translate-x-1" />

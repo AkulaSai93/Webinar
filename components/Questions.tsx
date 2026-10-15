@@ -67,7 +67,7 @@ export default function Questions() {
     <section id="questions" className="scroll-mt-24 overflow-hidden bg-[#f3f4f6] px-6 py-14 sm:py-20">
       <div className="mx-auto max-w-[1152px]">
         <div className="text-center">
-          <span className="inline-flex items-center rounded-full border border-brand/35 bg-brand/10 px-4 py-2 text-sm font-bold text-ink">
+          <span className="inline-flex items-center rounded-[8px] border border-brand/35 bg-brand/10 px-4 py-2 text-sm font-bold text-ink">
             What you&apos;ll walk away with
           </span>
 
@@ -101,7 +101,7 @@ export default function Questions() {
                 key={q}
                 onClick={() => !front && setActive(i)}
                 aria-hidden={!front}
-                className={`absolute left-1/2 top-1/2 flex h-[220px] w-[280px] flex-col rounded-[28px] p-7 sm:h-[240px] sm:w-[320px] ${
+                className={`absolute left-1/2 top-1/2 flex h-[220px] w-[280px] flex-col rounded-[8px] p-7 sm:h-[240px] sm:w-[320px] ${
                   front ? "" : "cursor-pointer"
                 } ${
                   front ? "bg-brand text-white" : "bg-white text-ink"
@@ -181,7 +181,7 @@ export default function Questions() {
 
           <a
             href="#register"
-            className="group inline-flex shrink-0 items-center gap-2.5 rounded-full bg-brand px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-brand/25 transition hover:bg-brand-dark"
+            className="group inline-flex shrink-0 items-center gap-2.5 rounded-[8px] bg-brand px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-brand/25 transition hover:bg-brand-dark"
           >
             Get my answers
             <ArrowRight className="size-4 transition group-hover:translate-x-1" />

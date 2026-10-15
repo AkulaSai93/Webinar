@@ -36,7 +36,7 @@ export default function WhyAttend() {
     <section id="why" className="scroll-mt-24 bg-[#f3f4f6]">
       <div className="mx-auto max-w-[1152px] px-6 pt-14 text-center">
         <Reveal from="top">
-          <span className="inline-flex items-center rounded-full border border-brand/35 bg-brand/10 px-4 py-2 text-sm font-bold text-ink">
+          <span className="inline-flex items-center rounded-[8px] border border-brand/35 bg-brand/10 px-4 py-2 text-sm font-bold text-ink">
             Why you should attend
           </span>
         </Reveal>
@@ -58,7 +58,7 @@ export default function WhyAttend() {
 
             <a
               href="#register"
-              className="group inline-flex shrink-0 items-center gap-2.5 rounded-full bg-brand px-7 py-4 text-base font-bold leading-6 text-white transition hover:bg-brand-dark"
+              className="group inline-flex shrink-0 items-center gap-2.5 rounded-[8px] bg-brand px-7 py-4 text-base font-bold leading-6 text-white transition hover:bg-brand-dark"
             >
               Get my plan. Register now
               <ArrowRight className="size-4 transition group-hover:translate-x-1" />

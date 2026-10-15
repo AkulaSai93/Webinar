@@ -12,7 +12,7 @@ const YEARS = ["Year 1", "Year 2", "Year 3", "Year 4"];
 
 function Cross() {
   return (
-    <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-lg bg-brand/10 text-brand">
+    <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-[8px] bg-brand/10 text-brand">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="size-3" aria-hidden>
         <path d="M6 6l12 12M18 6L6 18" />
       </svg>
@@ -130,13 +130,13 @@ function Chart() {
 
         {/* labels live in HTML, so they stay legible however the chart scales */}
         <span
-          className="chart-fade chart-fade-2 pointer-events-none absolute whitespace-nowrap rounded-full border border-white/10 bg-white/[0.07] px-3 py-1.5 text-[11px] font-bold text-white backdrop-blur-sm sm:text-xs"
+          className="chart-fade chart-fade-2 pointer-events-none absolute whitespace-nowrap rounded-[8px] border border-white/10 bg-white/[0.07] px-3 py-1.5 text-[11px] font-bold text-white backdrop-blur-sm sm:text-xs"
           style={{ right: "4%", top: "6%" }}
         >
           Started in Year 1
         </span>
         <span
-          className="chart-fade chart-fade-3 pointer-events-none absolute whitespace-nowrap rounded-full border border-white/8 bg-white/[0.04] px-3 py-1.5 text-[11px] font-medium text-white/60 backdrop-blur-sm sm:text-xs"
+          className="chart-fade chart-fade-3 pointer-events-none absolute whitespace-nowrap rounded-[8px] border border-white/8 bg-white/[0.04] px-3 py-1.5 text-[11px] font-medium text-white/60 backdrop-blur-sm sm:text-xs"
           style={{ right: "4%", top: "76%" }}
         >
           Waited till Year 3
@@ -182,7 +182,7 @@ export default function CostOfWaiting() {
     <section id="cost" className="scroll-mt-24 bg-[#f3f4f6] px-6 py-14 sm:py-20">
       <div className="mx-auto max-w-[1152px]">
         <Reveal from="top">
-          <span className="inline-flex items-center rounded-full border border-brand/35 bg-brand/10 px-4 py-2 text-sm font-bold text-ink">
+          <span className="inline-flex items-center rounded-[8px] border border-brand/35 bg-brand/10 px-4 py-2 text-sm font-bold text-ink">
             The cost of waiting
           </span>
 
@@ -202,7 +202,7 @@ export default function CostOfWaiting() {
           <Reveal from="top">
             <InView
               activeClass="chart-in"
-              className="relative overflow-hidden rounded-[28px] px-6 py-7 shadow-[0_30px_80px_-40px_rgba(10,7,8,0.6)] ring-1 ring-inset ring-white/8 sm:px-8"
+              className="relative overflow-hidden rounded-[8px] px-6 py-7 shadow-[0_30px_80px_-40px_rgba(10,7,8,0.6)] ring-1 ring-inset ring-white/8 sm:px-8"
               style={{
                 backgroundImage:
                   "radial-gradient(120% 90% at 85% 10%, rgba(231,0,11,0.16) 0%, rgba(231,0,11,0) 55%)," +
@@ -238,7 +238,7 @@ export default function CostOfWaiting() {
 
               <a
                 href="#register"
-                className="group mt-7 inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand/25 transition hover:bg-brand-dark"
+                className="group mt-7 inline-flex items-center gap-2 rounded-[8px] bg-brand px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand/25 transition hover:bg-brand-dark"
               >
                 Get ahead. Register now
                 <ArrowRight className="size-4 transition group-hover:translate-x-1" />

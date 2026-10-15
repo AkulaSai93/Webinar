@@ -76,7 +76,7 @@ function Slot({
         aria-haspopup="listbox"
         aria-expanded={open}
         onClick={() => setOpen((o) => !o)}
-        className={`inline-flex max-w-full items-center gap-[0.28em] rounded-[0.32em] border px-[0.3em] py-0 align-baseline text-brand transition ${
+        className={`inline-flex max-w-full items-center gap-[0.28em] rounded-[8px] border px-[0.3em] py-0 align-baseline text-brand transition ${
           open
             ? "border-brand bg-brand/10 shadow-[0_6px_18px_-8px_rgba(231,0,11,0.5)]"
             : "border-brand/30 bg-brand/[0.07] hover:border-brand/60 hover:bg-brand/10"
@@ -91,7 +91,7 @@ function Slot({
         <span
           role="listbox"
           aria-label={label}
-          className={`absolute left-1/2 top-[calc(100%+12px)] z-50 block -translate-x-1/2 rounded-[18px] border border-ink/10 bg-white p-2 text-left font-geist tracking-normal shadow-[0_24px_60px_-20px_rgba(18,18,24,0.35)] ${
+          className={`absolute left-1/2 top-[calc(100%+12px)] z-50 block -translate-x-1/2 rounded-[8px] border border-ink/10 bg-white p-2 text-left font-geist tracking-normal shadow-[0_24px_60px_-20px_rgba(18,18,24,0.35)] ${
             wide ? "w-[min(340px,calc(100vw-32px))]" : "w-[min(260px,calc(100vw-32px))]"
           }`}
         >
@@ -110,7 +110,7 @@ function Slot({
                   onPick(o);
                   setOpen(false);
                 }}
-                className={`flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-left text-base leading-snug transition hover:bg-brand/10 ${
+                className={`flex w-full items-center justify-between gap-3 rounded-[8px] px-3 py-2.5 text-left text-base leading-snug transition hover:bg-brand/10 ${
                   on ? "font-bold text-brand" : "font-medium text-ink"
                 }`}
               >
@@ -317,7 +317,7 @@ export default function DreamPicker() {
         <button
           type="button"
           onClick={() => setReveal((r) => r + 1)}
-          className="mt-7 inline-flex items-center gap-2.5 rounded-full bg-ink px-7 py-3.5 text-[15px] font-semibold text-white transition hover:bg-ink/85 hover:shadow-[0_16px_34px_-16px_rgba(18,18,24,0.7)]"
+          className="mt-7 inline-flex items-center gap-2.5 rounded-[8px] bg-ink px-7 py-3.5 text-[15px] font-semibold text-white transition hover:bg-ink/85 hover:shadow-[0_16px_34px_-16px_rgba(18,18,24,0.7)]"
         >
           Get Roadmap
         </button>
@@ -338,7 +338,7 @@ export default function DreamPicker() {
       {/* the roadmap that pick earns */}
         <div
           aria-live="polite"
-          className="road-land mx-auto mt-9 w-full max-w-[1000px] overflow-hidden rounded-[24px] border border-ink/[0.08] bg-white text-left shadow-[0_40px_90px_-60px_rgba(18,18,24,0.5)]"
+          className="road-land mx-auto mt-9 w-full max-w-[1000px] overflow-hidden rounded-[8px] border border-ink/[0.08] bg-white text-left shadow-[0_40px_90px_-60px_rgba(18,18,24,0.5)]"
         >
           {/* light passing over the card as it lands */}
           <span
@@ -358,7 +358,7 @@ export default function DreamPicker() {
               </h3>
             </div>
 
-            <span className="inline-flex shrink-0 items-center gap-2 rounded-full border border-ink/10 bg-ink/[0.03] px-3.5 py-1.5 text-[12px] font-semibold text-ink/55">
+            <span className="inline-flex shrink-0 items-center gap-2 rounded-[8px] border border-ink/10 bg-ink/[0.03] px-3.5 py-1.5 text-[12px] font-semibold text-ink/55">
               <span className="size-1.5 rounded-full bg-brand" />
               5 steps · 2 unlocked
             </span>
@@ -415,7 +415,7 @@ export default function DreamPicker() {
 
             <a
               href="#register"
-              className="inline-flex shrink-0 items-center gap-2.5 whitespace-nowrap rounded-full bg-brand px-6 py-3 text-[15px] font-semibold text-white transition hover:bg-brand-dark"
+              className="inline-flex shrink-0 items-center gap-2.5 whitespace-nowrap rounded-[8px] bg-brand px-6 py-3 text-[15px] font-semibold text-white transition hover:bg-brand-dark"
             >
               Get my full roadmap <span aria-hidden>→</span>
             </a>

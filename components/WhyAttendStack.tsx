@@ -62,7 +62,7 @@ export default function WhyAttendStack({
 
   const Card = ({ r, style }: { r: Reason; style?: React.CSSProperties }) => (
     <article
-      className="flex h-[340px] w-full flex-col overflow-hidden rounded-[36px] border-[3px] border-white px-7 py-6 font-geist shadow-[0px_4px_8px_0px_rgba(8,7,49,0.06),0px_14px_14px_0px_rgba(8,7,49,0.05)] sm:h-[320px] sm:rounded-[48px] sm:border-4 sm:px-9 sm:py-7"
+      className="flex h-[340px] w-full flex-col overflow-hidden rounded-[8px] border-[3px] border-white px-7 py-6 font-geist shadow-[0px_4px_8px_0px_rgba(8,7,49,0.06),0px_14px_14px_0px_rgba(8,7,49,0.05)] sm:h-[320px] sm:rounded-[8px] sm:border-4 sm:px-9 sm:py-7"
       style={{
         backgroundImage: `linear-gradient(to left, ${r.from}, ${r.to})`,
         ...style,
@@ -137,7 +137,7 @@ export default function WhyAttendStack({
 
         {/* the gradient container — it clips, so cards rise out of it */}
         <div
-          className="card-stack relative mx-auto h-[520px] w-full max-w-[720px] overflow-hidden rounded-[48px] sm:h-[560px] sm:rounded-[80px]"
+          className="card-stack relative mx-auto h-[520px] w-full max-w-[720px] overflow-hidden rounded-[8px] sm:h-[560px] sm:rounded-[8px]"
           style={{
             transition:
               "transform 900ms cubic-bezier(0.22, 1, 0.36, 1), opacity 700ms ease-out",
@@ -148,7 +148,7 @@ export default function WhyAttendStack({
           {/* transparent until 60%, then down to solid brand red */}
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-0 rounded-[80px]"
+            className="pointer-events-none absolute inset-0 rounded-[8px]"
             style={{
               backgroundImage:
                 "linear-gradient(to bottom, rgba(231,0,11,0) 59.91%, #e7000b 100%)",
@@ -157,7 +157,7 @@ export default function WhyAttendStack({
           {/* the glassy highlight rising off the bottom edge */}
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-0 rounded-[80px] shadow-[inset_0px_-0.784px_0.784px_-0.607px_rgba(255,255,255,0.42),inset_0px_-1.92px_1.92px_-1.214px_rgba(255,255,255,0.41),inset_0px_-3.637px_3.637px_-1.821px_rgba(255,255,255,0.39),inset_0px_-6.35px_6.35px_-2.429px_rgba(255,255,255,0.37),inset_0px_-11.052px_11.052px_-3.036px_rgba(255,255,255,0.33),inset_0px_-20.243px_20.243px_-3.643px_rgba(255,255,255,0.25),inset_0px_-40px_40px_-4.25px_rgba(255,255,255,0.08)]"
+            className="pointer-events-none absolute inset-0 rounded-[8px] shadow-[inset_0px_-0.784px_0.784px_-0.607px_rgba(255,255,255,0.42),inset_0px_-1.92px_1.92px_-1.214px_rgba(255,255,255,0.41),inset_0px_-3.637px_3.637px_-1.821px_rgba(255,255,255,0.39),inset_0px_-6.35px_6.35px_-2.429px_rgba(255,255,255,0.37),inset_0px_-11.052px_11.052px_-3.036px_rgba(255,255,255,0.33),inset_0px_-20.243px_20.243px_-3.643px_rgba(255,255,255,0.25),inset_0px_-40px_40px_-4.25px_rgba(255,255,255,0.08)]"
           />
 
           {reasons.map((r, i) => {
@@ -171,11 +171,13 @@ export default function WhyAttendStack({
                 // `translate` property, which would compose with this transform
                 className="absolute left-1/2 top-1/2 flex w-[calc(100%-2.5rem)] max-w-[468px] justify-center sm:w-[468px]"
                 style={{
-                  transition:
-                    "transform 850ms cubic-bezier(0.22, 1, 0.36, 1), opacity 400ms ease-out",
+                  // a spring on the way in: it overshoots a touch, then settles
+                  transition: out
+                    ? "transform 760ms cubic-bezier(0.34, 1.46, 0.5, 1), opacity 260ms ease-out"
+                    : "transform 420ms cubic-bezier(0.4, 0, 1, 1), opacity 240ms ease-in",
                   transform: out
-                    ? `translate(-50%, calc(-50% - ${back} * var(--stack-step))) rotate(${r.tilt}deg)`
-                    : `translate(-50%, calc(-50% + 300px)) rotate(${r.tilt}deg)`,
+                    ? `translate(-50%, calc(-50% - ${back} * var(--stack-step))) rotate(${r.tilt}deg) scale(1)`
+                    : `translate(-50%, calc(-50% + 300px)) rotate(${r.tilt * 1.6}deg) scale(0.9)`,
                   opacity: out ? 1 : 0,
                   zIndex: i + 1,
                 }}

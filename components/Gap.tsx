@@ -21,7 +21,7 @@ const INDUSTRY = [
 function CheckBox({ tone }: { tone: "brand" | "white" }) {
   return (
     <span
-      className={`mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-md ${
+      className={`mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-[8px] ${
         tone === "brand" ? "bg-brand text-white" : "bg-white text-brand"
       }`}
     >
@@ -40,7 +40,7 @@ export default function Gap() {
       className="relative z-20 -mt-[38vh] scroll-mt-24 bg-transparent"
     >
       <RiseIn distance={320}>
-        <div className="w-full rounded-[32px] bg-[#1b1b1f] px-6 py-12 shadow-[0_-30px_80px_-50px_rgba(10,7,8,0.55)] sm:rounded-[40px] sm:px-10 sm:py-20">
+        <div className="w-full rounded-[8px] bg-[#1b1b1f] px-6 py-12 shadow-[0_-30px_80px_-50px_rgba(10,7,8,0.55)] sm:rounded-[8px] sm:px-10 sm:py-20">
           <div className="mx-auto max-w-[1072px]">
             {/* heading + supporting copy */}
             <Reveal from="top">
@@ -60,8 +60,8 @@ export default function Gap() {
             {/* the two sides */}
             <div className="mt-9 grid gap-5 sm:mt-12 sm:gap-7 lg:grid-cols-2">
               <Reveal from="top" className="h-full">
-                <article className="flex h-full flex-col gap-5 rounded-[24px] bg-white p-8">
-                  <span className="inline-flex w-fit items-center rounded-full bg-brand/10 px-3 py-1.5 text-xs font-semibold leading-4 text-brand">
+                <article className="flex h-full flex-col gap-5 rounded-[8px] bg-white p-8">
+                  <span className="inline-flex w-fit items-center rounded-[8px] bg-brand/10 px-3 py-1.5 text-xs font-semibold leading-4 text-brand">
                     Year 1–2
                   </span>
 
@@ -82,13 +82,13 @@ export default function Gap() {
 
               <Reveal from="top" delay={140} className="h-full">
                 <article
-                  className="flex h-full flex-col gap-5 rounded-[24px] p-8"
+                  className="flex h-full flex-col gap-5 rounded-[8px] p-8"
                   style={{
                     backgroundImage:
                       "linear-gradient(151deg, #e7000b 0%, #c10007 50%, #a20711 100%)",
                   }}
                 >
-                  <span className="inline-flex w-fit items-center rounded-full bg-white/20 px-3 py-1.5 font-mono text-[10px] font-bold leading-[15px] tracking-[1px] text-white">
+                  <span className="inline-flex w-fit items-center rounded-[8px] bg-white/20 px-3 py-1.5 font-mono text-[10px] font-bold leading-[15px] tracking-[1px] text-white">
                     DAY 1 OF A JOB
                   </span>
 
@@ -130,7 +130,7 @@ export default function Gap() {
 
                 <a
                   href="#register"
-                  className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold leading-5 text-white transition hover:bg-brand-dark lg:ml-auto"
+                  className="group inline-flex shrink-0 items-center gap-2 rounded-[8px] bg-brand px-5 py-2.5 text-sm font-semibold leading-5 text-white transition hover:bg-brand-dark lg:ml-auto"
                 >
                   Register now
                   <ArrowRight className="size-4 transition group-hover:translate-x-1" />

@@ -39,7 +39,7 @@ export default function SessionChips({ className = "" }: { className?: string })
       {CHIPS.map(({ Icon, label }) => (
         <span
           key={label}
-          className="inline-flex items-center gap-2 rounded-full bg-white px-3.5 py-2 text-[13px] font-medium text-ink sm:px-4 sm:py-2.5 sm:text-sm"
+          className="inline-flex items-center gap-2 rounded-[8px] bg-white px-3.5 py-2 text-[13px] font-medium text-ink sm:px-4 sm:py-2.5 sm:text-sm"
         >
           <Icon />
           {label}

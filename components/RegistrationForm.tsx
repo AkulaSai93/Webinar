@@ -12,7 +12,7 @@ const SESSION_START = "2026-10-17T16:00:00+05:30";
 type Errors = { fullName?: string; phone?: string; email?: string };
 
 const inputBase =
-  "w-full rounded-xl border border-ink/12 bg-[#fafafa] px-4 text-sm text-ink placeholder:text-ink/30 outline-none transition focus:border-brand focus:bg-white focus:ring-2 focus:ring-brand/15";
+  "w-full rounded-[8px] border border-ink/12 bg-[#fafafa] px-4 text-sm text-ink placeholder:text-ink/30 outline-none transition focus:border-brand focus:bg-white focus:ring-2 focus:ring-brand/15";
 
 const labelClass = "sr-only";
 
@@ -67,7 +67,7 @@ export default function RegistrationForm({
 
   if (done) {
     return (
-      <div className="rounded-2xl border border-ink/10 bg-white p-8 text-center">
+      <div className="rounded-[8px] border border-ink/10 bg-white p-8 text-center">
         <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-brand/10 text-xl text-brand">
           ✓
         </div>
@@ -87,10 +87,10 @@ export default function RegistrationForm({
 
   return (
     <div
-      className="relative overflow-hidden rounded-2xl border border-ink/10 bg-white p-6"
+      className="relative overflow-hidden rounded-[8px] border border-ink/10 bg-white p-6"
     >
       {/* the corner flag */}
-      <span className="absolute right-0 top-0 rounded-bl-2xl rounded-tr-2xl bg-brand px-4 py-2.5 text-[13px] font-medium text-white sm:px-5 sm:py-3 sm:text-sm">
+      <span className="absolute right-0 top-0 rounded-bl-[8px] rounded-tr-[8px] bg-brand px-4 py-2.5 text-[13px] font-medium text-white sm:px-5 sm:py-3 sm:text-sm">
         Limited Seats Only
       </span>
 
@@ -131,7 +131,7 @@ export default function RegistrationForm({
             WhatsApp number
           </label>
           <div className="flex gap-2">
-            <span className={`inline-flex shrink-0 items-center rounded-xl border border-ink/12 bg-[#f2f2f2] px-3.5 text-sm font-semibold text-ink/70 ${compact ? "h-11" : "h-12"}`}>
+            <span className={`inline-flex shrink-0 items-center rounded-[8px] border border-ink/12 bg-[#f2f2f2] px-3.5 text-sm font-semibold text-ink/70 ${compact ? "h-11" : "h-12"}`}>
               +91
             </span>
             <input
@@ -182,7 +182,7 @@ export default function RegistrationForm({
         <button
           type="submit"
           disabled={submitting}
-          className={`group flex w-full items-center justify-center gap-3 rounded-xl bg-ink px-6 ${compact ? "mt-4 py-3.5" : "mt-4 py-3.5"} text-sm font-semibold leading-5 text-white transition hover:bg-brand focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60`}
+          className={`group flex w-full items-center justify-center gap-3 rounded-[8px] bg-ink px-6 ${compact ? "mt-4 py-3.5" : "mt-4 py-3.5"} text-sm font-semibold leading-5 text-white transition hover:bg-brand focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60`}
         >
           {submitting ? "Reserving your seat…" : cta}
           <span className="flex size-6 items-center justify-center rounded-full bg-white text-ink transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5">

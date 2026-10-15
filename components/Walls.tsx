@@ -160,7 +160,7 @@ export default function Walls() {
       <WallStack
         header={
           <div className="mx-auto flex max-w-[768px] flex-col items-center text-center">
-            <span className="inline-flex items-center rounded-full border border-brand/35 bg-brand/10 px-4 py-2 text-sm font-bold text-ink">
+            <span className="inline-flex items-center rounded-[8px] border border-brand/35 bg-brand/10 px-4 py-2 text-sm font-bold text-ink">
               Why most never make it
             </span>
 
@@ -187,7 +187,7 @@ export default function Walls() {
 
             <a
               href="#register"
-              className="group inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-dark"
+              className="group inline-flex items-center gap-2 rounded-[8px] bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-dark"
             >
               Register now
               <ArrowUpRight />
@@ -224,7 +224,7 @@ export default function Walls() {
                 <div className="h-1.5 shrink-0" />
                 <div className="flex items-center gap-4 px-5 py-3.5">
                   <span
-                    className="flex size-10 shrink-0 items-center justify-center rounded-lg text-ink/70"
+                    className="flex size-10 shrink-0 items-center justify-center rounded-[8px] text-ink/70"
                     style={{ backgroundColor: chip }}
                   >
                     <Icon />

@@ -32,7 +32,7 @@ export default function Faq() {
       <div className="mx-auto grid max-w-[1152px] gap-10 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
         {/* the heading */}
         <div>
-          <span className="inline-flex items-center rounded-full border border-brand/35 bg-brand/10 px-4 py-2 text-sm font-bold text-ink">
+          <span className="inline-flex items-center rounded-[8px] border border-brand/35 bg-brand/10 px-4 py-2 text-sm font-bold text-ink">
             Quick answers
           </span>
 
